@@ -1,0 +1,82 @@
+// * {
+//     box-sizing: border-box;
+// }
+
+
+.bg-img {
+    /* The image used */
+    background-image: url("https://cdn.shortpixel.ai/client/q_lossy,ret_img/https://www.bestnepaltrek.com/wp-content/themes/wdncms/images/banner-placeholder.jpg");
+
+    /* Control the height of the image */
+    min-height: 380px;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat  : no-repeat;
+    background-size    : cover;
+    position           : relative;
+    height             : 100%;
+
+    // filter        : blur(2px);
+    // -webkit-filter: blur(2px);
+}
+
+
+/* Add responsiveness - will automatically display the navbar vertically instead of horizontally on screens less than 500 pixels */
+@media screen and (max-width: 500px) {
+    .navbar a {
+        float  : none;
+        display: block;
+    }
+}
+
+#fligthSearch {
+    font-family    : Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width          : 100%;
+}
+
+#fligthSearch td,
+#fligthSearch th {
+    border : 1px solid #ddd;
+    padding: 8px;
+}
+
+// #fligthSearch tr:nth-child(even) {
+//     background-color: #f2f2f2;
+// }
+
+#fligthSearch tr:hover {
+    background-color: #ddd;
+}
+
+#fligthSearch th {
+    padding-top     : 12px;
+    padding-bottom  : 12px;
+    text-align      : left;
+    background-color: #04AA6D;
+    color           : white;
+}
+
+.searchTable {
+    position: absolute;
+    bottom  : 90px;
+    width   : 100%;
+    background: rgb(0, 0, 0); /* Fallback color */
+    background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
+}
+
+.select2-container .select2-selection--single{
+    height:34px !important;
+}
+.select2-container--default .select2-selection--single{
+         border: 1px solid #ccc !important; 
+     border-radius: 0px !important; 
+}
+
+
+// h1{
+//     color: white; 
+//     background-color: #333;
+//     font-style: italic;
+// }

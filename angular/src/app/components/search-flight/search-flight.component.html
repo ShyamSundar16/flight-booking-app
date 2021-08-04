@@ -1,0 +1,60 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+<div class="bg-img">
+    <p>You selected {{selected}}</p>
+    <div class="searchTable">
+      <table id="fligthSearch">
+        <tr>
+          <th>Source</th>
+          <th>Destination</th>
+          <th>Date Of Journey</th>
+          <th>Return</th>
+        </tr>
+        <tr>
+          <td>
+            <select class="form-control select2" (change)="update($event)">
+              <option>Select</option> 
+              <option *ngFor="let destination of destinations" [value]="destination">
+                {{destination}}
+              </option> 
+           </select>
+          </td>
+          <td>
+            <select class="form-control select2" (change)="update($event)">
+              <option>Select</option> 
+              <option *ngFor="let destination of destinations" [value]="destination">
+                {{destination}}
+              </option> 
+           </select>
+          </td>
+          <td>
+            <input type="date" id="onwardJourneyDate" name="onwardJourneyDate">
+          </td>
+          <td>
+            <input type="date" id="returnJourneyDate" name="returnJourneyDate">
+          </td>
+        </tr>
+      </table>
+    </div>
+    <!-- <form action="/someaction" class="container">
+      <h1>Login</h1>
+  
+      <label for="email"><b>Email</b></label>
+      <input type="text" placeholder="Enter Email" name="email" required>
+  
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+  
+      <button type="submit" class="btn">Login</button>
+    </form> -->
+
+  </div>
+
+  <!-- <script>
+    $('.select2').select2();
+</script> -->

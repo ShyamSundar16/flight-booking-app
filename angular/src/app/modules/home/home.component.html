@@ -1,0 +1,67 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<header>
+  <h1 [ngStyle]="headerStyle">FSE Flight Booking System</h1>
+  <div class="topnav">
+    <a class="active" href="#"><i class="fa fa-fw fa-home"></i> Home</a>
+    <a href="#"><i class="fa fa-fw fa-search"></i> Search</a>
+    <a href="#"><i class="fa fa-fw fa-envelope"></i> Contact</a>
+    <a href="#"><i class="fa fa-fw fa-user"></i> Login</a>
+  </div>
+</header>
+
+<body>
+  <div class="bg-img">
+    <p>You selected {{selected}}</p>
+    <div class="searchTable">
+
+      <table id="fligthSearch">
+        <tr>
+          <th>Source</th>
+          <th>Destination</th>
+          <th>Date Of Journey</th>
+          <th>Return</th>
+        </tr>
+        <tr>
+          <td>
+            <select #cricket (change)="update($event)">
+              <option value="default">----</option>
+              <option *ngFor="let destination of destinations" [value]="destination">
+                {{destination}}
+              </option>
+            </select>
+          </td>
+          <td>
+            <select #cricket (change)="update($event)">
+              <option value="default">----</option>
+              <option *ngFor="let destination of destinations" [value]="destination">
+                {{destination}}
+              </option>
+            </select>
+          </td>
+          <td>
+            <input type="date" id="onwardJourneyDate" name="onwardJourneyDate">
+          </td>
+          <td>
+            <input type="date" id="returnJourneyDate" name="returnJourneyDate">
+          </td>
+        </tr>
+      </table>
+    </div>
+    <!-- <form action="/someaction" class="container">
+      <h1>Login</h1>
+  
+      <label for="email"><b>Email</b></label>
+      <input type="text" placeholder="Enter Email" name="email" required>
+  
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+  
+      <button type="submit" class="btn">Login</button>
+    </form> -->
+
+  </div>
+
+</body>
+<footer>
+  <h2>The end</h2>
+</footer>
