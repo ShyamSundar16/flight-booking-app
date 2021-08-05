@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { User } from 'src/app/models/User';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -6,8 +10,36 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  signupForm: FormGroup
+  loginForm: FormGroup
 
-  constructor() { }
+  constructor(private userService: UserService, private router: Router) {
+
+    this.signupForm = new FormGroup({
+
+    })
+    this.loginForm = new FormGroup({
+      email: new FormControl("", [
+        Validators.required,
+        Validators.email
+      ])
+    })
+  }
+
+  getLogin(emailId: string) {
+
+    let u = new User();
+    u.name = emailId;
+    u.valid = true;
+    this.userService.user = u;
+
+    if (u.name == "admin@gmail.com") {
+      this.router.navigate(['/', 'admin', 'manageFlights']);
+    }
+    else {
+      this.router.navigate(["searchFlight"])
+    }
+  }
 
   ngOnInit(): void {
   }

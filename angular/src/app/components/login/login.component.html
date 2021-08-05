@@ -1,5 +1,5 @@
 <div class="container">
-    <form action="action_page.php" style="border:1px solid #ccc">
+    <form [formGroup]="signupForm" action="action_page.php" style="border:1px solid #ccc">
         <div class="col">
             <input type="text" placeholder="Enter Email" name="email" required>
 
@@ -18,16 +18,22 @@
     <div class="vl">
         <span class="vl-innertext">or</span>
     </div>
-    <form action="/action_page.php">
+    <form [formGroup]="loginForm" (ngSubmit)="getLogin(email.value)">
         <div class="row">
             <div class="col">
                 <div class="hide-md-lg">
                     <p>Or sign in manually:</p>
                 </div>
-                <input type="text" placeholder="Enter Email" name="email" required>
+                <input type="text" #email placeholder="Enter Email" name="email" formControlName="email" required>
+                <p *ngIf = "loginForm.controls.email.dirty && !!loginForm.controls.email.errors">
+                    <span *ngIf = "!!loginForm.controls.email.errors.required" class="error">Email cannot be empty.</span>
+                    <span *ngIf = "!!loginForm.controls.email.errors.email" class="error">Invalid email.</span>
+                </p>
                 <input type="password" placeholder="Enter Password" name="password" required>
                 <a href="#" style="color:dodgerblue" class="btn">Forgot password?</a>
-                <input type="submit" class="signupbtn" value="Login">
+                <!-- <input type="submit" [disabled]="loginForm.invalid" class="signupbtn" value="Login"> -->
+                <button [disabled]="loginForm.invalid" type="submit"  class="signupbtn">Login</button>
+
             </div>
 
         </div>
