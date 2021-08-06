@@ -1,11 +1,14 @@
 <div class="container">
-    <form [formGroup]="signupForm" action="action_page.php" style="border:1px solid #ccc">
+    <form [formGroup]="signupForm">
         <div class="col">
-            <input type="text" placeholder="Enter Email" name="email" required>
-
-            <input type="password" placeholder="Enter Password" name="password" required>
-
-            <!-- <input type="password" placeholder="Repeat Password" name="password-repeat" required> -->
+            <input type="text" placeholder="Name" name="name" required>
+            <input type="text" #signupemail placeholder="Email" name="signupemail" formControlName="signupemail" required>
+            <p *ngIf = "signupForm.controls.signupemail.dirty && !!signupForm.controls.signupemail.errors">
+                <span *ngIf = "!!signupForm.controls.signupemail.errors.required" class="error">Email cannot be empty.</span>
+                <span *ngIf = "!!signupForm.controls.signupemail.errors.email" class="error">Invalid email.</span>
+            </p>
+            <input type="number" placeholder="Phone number" name="phone" required>
+            <input type="password" placeholder="Password" name="password" required>
             <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p>
 
             <div class="clearfix">
@@ -24,12 +27,12 @@
                 <div class="hide-md-lg">
                     <p>Or sign in manually:</p>
                 </div>
-                <input type="text" #email placeholder="Enter Email" name="email" formControlName="email" required>
+                <input type="text" #email placeholder="Email" name="email" formControlName="email" required>
                 <p *ngIf = "loginForm.controls.email.dirty && !!loginForm.controls.email.errors">
                     <span *ngIf = "!!loginForm.controls.email.errors.required" class="error">Email cannot be empty.</span>
                     <span *ngIf = "!!loginForm.controls.email.errors.email" class="error">Invalid email.</span>
                 </p>
-                <input type="password" placeholder="Enter Password" name="password" required>
+                <input type="password" placeholder="Password" name="password" required>
                 <a href="#" style="color:dodgerblue" class="btn">Forgot password?</a>
                 <!-- <input type="submit" [disabled]="loginForm.invalid" class="signupbtn" value="Login"> -->
                 <button [disabled]="loginForm.invalid" type="submit"  class="signupbtn">Login</button>

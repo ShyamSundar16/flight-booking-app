@@ -16,7 +16,10 @@ export class LoginComponent implements OnInit {
   constructor(private userService: UserService, private router: Router) {
 
     this.signupForm = new FormGroup({
-
+      signupemail: new FormControl("", [
+        Validators.required,
+        Validators.email
+      ])
     })
     this.loginForm = new FormGroup({
       email: new FormControl("", [
@@ -29,11 +32,11 @@ export class LoginComponent implements OnInit {
   getLogin(emailId: string) {
 
     let u = new User();
-    u.name = emailId;
+    u.email = emailId;
     u.valid = true;
     this.userService.user = u;
 
-    if (u.name == "admin@gmail.com") {
+    if (u.email == "admin@gmail.com") {
       this.router.navigate(['/', 'admin', 'manageFlights']);
     }
     else {

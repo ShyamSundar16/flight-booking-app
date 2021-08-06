@@ -3,8 +3,10 @@
 .topnav {
     overflow        : hidden;
     background-color: #333;
+    top: 0;
+    right: 0;
+    left: 0;
 }
-
 /* Navbar links */
 .topnav a {
     float             : left;

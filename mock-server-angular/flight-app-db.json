@@ -1,0 +1,59 @@
+{
+  "users": [],
+  "flights": [
+    {
+      "id": 1,
+      "code": "INDGO101",
+      "airlines": "Indigo",
+      "availableclass": [
+        "Business",
+        "Economy"
+      ],
+      "runson": [
+        "Sunday",
+        "Tuesday",
+        "Thursday"
+      ],
+      "from": "Chennai",
+      "to": "Mumbai",
+      "contact": "support@indigo.com",
+      "status": "Active"
+    },
+    {
+      "id": 2,
+      "code": "INDGO102",
+      "airlines": "Indigo",
+      "availableclass": "Business,Economy",
+      "runson": "Monday,Wednesday,Friday",
+      "from": "Bangalore",
+      "to": "Pune",
+      "contact": "support@indigo.com",
+      "status": "Active"
+    }
+  ],
+  "bookinghistory": {
+    "pnr": 123,
+    "userid": "dumy@gmail.com",
+    "from": "Chennai",
+    "to": "Mumbai",
+    "passengerscount": 4,
+    "class": "Business",
+    "seats": [
+      "A1",
+      "A2",
+      "A3",
+      "A4"
+    ],
+    "journeyDate": "2021-08-14T05:16:05.00Z",
+    "bookingdate": "2021-08-06T05:16:05.480Z",
+    "amount": 8000
+  },
+  "coupon": {
+    "code": "FLY300",
+    "status": "active",
+    "class": "All",
+    "applicapbleto": [
+      "INDGO101"
+    ]
+  }
+}

@@ -4,6 +4,9 @@ import { ManageflightsComponent } from './components/manageflights/manageflights
 import { ManagecouponComponent } from './components/managecoupon/managecoupon.component';
 import { RouterModule, Routes } from '@angular/router';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { FlightService } from 'src/app/services/flight.service';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -23,7 +26,8 @@ const routes: Routes = [
     SidenavComponent
   ],
   imports: [
-    CommonModule,RouterModule.forChild(routes)
-  ]
+    CommonModule,RouterModule.forChild(routes),HttpClientModule,ReactiveFormsModule
+  ],
+  providers :[FlightService]
 })
 export class AdminModule { }

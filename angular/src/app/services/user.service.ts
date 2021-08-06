@@ -8,6 +8,9 @@ export class UserService{
     public set user(newU:User){
         this.u.valid = newU.valid; 
         this.u.name = newU.name; 
+        this.u.email= newU.email;
+        this.u.phone= newU.phone;
+
     }
 
     public get user(){
