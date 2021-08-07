@@ -1,5 +1,20 @@
 {
-  "users": [],
+  "users": [
+    {
+      "name": "admin",
+      "email": "admin@gmail.com",
+      "phone": 9003170339,
+      "password": "admin",
+      "id": "admin@gmail.com"
+    },
+    {
+      "name": "Shyam",
+      "email": "shyam@gmail.com",
+      "phone": 9003170339,
+      "password": "test",
+      "id": "shyam@gmail.com"
+    }
+  ],
   "flights": [
     {
       "id": 1,
@@ -16,17 +31,6 @@
       ],
       "from": "Chennai",
       "to": "Mumbai",
-      "contact": "support@indigo.com",
-      "status": "Active"
-    },
-    {
-      "id": 2,
-      "code": "INDGO102",
-      "airlines": "Indigo",
-      "availableclass": "Business,Economy",
-      "runson": "Monday,Wednesday,Friday",
-      "from": "Bangalore",
-      "to": "Pune",
       "contact": "support@indigo.com",
       "status": "Active"
     }
@@ -48,12 +52,13 @@
     "bookingdate": "2021-08-06T05:16:05.480Z",
     "amount": 8000
   },
-  "coupon": {
-    "code": "FLY300",
-    "status": "active",
-    "class": "All",
-    "applicapbleto": [
-      "INDGO101"
-    ]
-  }
+  "coupon": [
+    {
+      "code": "FLY500",
+      "couponValue": "500",
+      "validTill": "2021-08-06T05:16:05.480Z",
+      "status": "Active",
+      "id": 2
+    }
+  ]
 }

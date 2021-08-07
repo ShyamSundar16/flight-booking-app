@@ -1,8 +1,62 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+  integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
 <app-sidenav></app-sidenav>
 
+
 <div class="content">
-    <h2>managecoupons</h2>
-    <p>This example use media queries to transform the sidebar to a top navigation bar when the screen size is 700px or less.</p>
-    <p>We have also added a media query for screens that are 400px or less, which will vertically stack and center the navigation links.</p>
-    <h3>Resize the browser window to see the effect.</h3>
+  <button type="button" class="addbtn" (click)="showAddForm()"><i class="fa fa-fw fa-plus"></i>Add Coupon</button>
+
+
+  <div class="container">
+    <form [formGroup]="updateCouponForm" class="form-inline" (ngSubmit)="modifyCoupon()" *ngIf="showUpdateCouponForm">
+      <div>
+        <input type="text" placeholder="id" name="id" formControlName="id" required>
+    
+        <input type="text" placeholder="Code" name="Code" formControlName="code" required>
+        <input type="text" placeholder="Coupon Value" name="CouponValue" formControlName="couponValue" required>
+        <input type="text" placeholder="Valid Till" name="ValidTill" formControlName="validTill" required>
+        <input type="text" placeholder="Status" name="Status" formControlName="status" required>
+
+        <button type="submit"  style="width: 50%;" class="editbtn"><i class="fa fa-fw fa-check"></i>Update</button><button type="submit"  style="width: 50%;" (click)="cancelUpdateForm()" class="deletebtn"><i class="fa fa-fw fa-remove"></i>Cancel</button>
+      </div>
+    </form>
   </div>
+
+  <div class="container">
+    <form [formGroup]="addCouponForm" class="form-inline" (ngSubmit)="addCoupon()" *ngIf="showAddCouponForm">
+      <div>
+        <input type="text" placeholder="Code" name="Code" formControlName="code" required>
+        <input type="text" placeholder="Coupon Value" name="CouponValue" formControlName="couponValue" required>
+        <input type="text" placeholder="Valid Till" name="ValidTill" formControlName="validTill" required>
+        <input type="text" placeholder="Status" name="Status" formControlName="status" required>
+
+        <button type="submit" style="width: 50%;" class="editbtn"><i class="fa fa-fw fa-check"></i>Save</button><button type="submit"  style="width: 50%;" (click)="cancelAddForm()" class="deletebtn"><i class="fa fa-fw fa-remove"></i>Cancel</button>
+      </div>
+    </form>
+  </div>
+  
+  <table id="flights">
+    <tr>
+      <th>Id</th>
+      <th>Code</th>
+      <th>Coupon Value</th>
+      <th>Valid Till</th>
+      <th>Status</th>
+    </tr>
+    
+    <tr *ngFor="let coupon of coupons">
+      <td>{{coupon.id}}</td>
+      <td>{{coupon.code}}</td>
+      <td>{{coupon.couponValue}}</td>
+      <td>{{coupon.validTill}}</td>
+      <td>{{coupon.status}}</td>
+      <td><button type="button" class="deletebtn" (click)="deleteCouponById(coupon.id)"><i
+            class="fa fa-fw fa-trash"></i>Delete</button></td>
+      <td><button  type="button" class="editbtn" (click)="showUpdateForm(coupon)"><i
+            class="fa fa-fw fa-edit"></i>Edit</button></td>     
+    </tr>
+
+  </table>
+</div>

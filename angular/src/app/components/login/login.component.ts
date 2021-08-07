@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { User } from 'src/app/models/User';
 import { UserService } from 'src/app/services/user.service';
 
@@ -14,34 +15,53 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup
 
   constructor(private userService: UserService, private router: Router) {
-
+    userService.user.valid = false;
     this.signupForm = new FormGroup({
-      signupemail: new FormControl("", [
-        Validators.required,
-        Validators.email
-      ])
+      name: new FormControl("", [Validators.required]),
+      email: new FormControl("", [Validators.required, Validators.email]),
+      phone: new FormControl("", [Validators.required]),
+      password: new FormControl("", [Validators.required]),
     })
     this.loginForm = new FormGroup({
-      email: new FormControl("", [
-        Validators.required,
-        Validators.email
-      ])
+      email: new FormControl("", [Validators.required, Validators.email]),
+      password: new FormControl("", [Validators.required])
+
     })
   }
 
-  getLogin(emailId: string) {
-
-    let u = new User();
-    u.email = emailId;
+  getLogin() {
+    let u: User = this.loginForm.value;
     u.valid = true;
     this.userService.user = u;
+    this.validateUserLogin(u.email, u.password);
+  }
 
-    if (u.email == "admin@gmail.com") {
-      this.router.navigate(['/', 'admin', 'manageFlights']);
-    }
-    else {
-      this.router.navigate(["searchFlight"])
-    }
+  signUpUser() {
+    let userObj: User=this.signupForm.value
+    userObj.id=userObj.email;
+    this.userService.saveUser(userObj)
+      .subscribe((res) => {
+        userObj.valid = true;
+        this.userService.user = userObj;
+        this.router.navigate(["searchFlight"]);
+      });
+  }
+
+  validateUserLogin(emailId: string, password: string) {
+    let filteredUserObservable$: Observable<User> = this.userService.getUserById(emailId);
+    filteredUserObservable$.subscribe(filteredUserObservable => {
+      if(filteredUserObservable.password == password){
+        if (emailId == "admin@gmail.com") {
+          this.router.navigate(['/', 'admin', 'manageFlights']);
+        }
+        else {
+          this.router.navigate(["searchFlight"])
+        }
+      }
+      else {
+        alert("Invalid Credentials");
+      }
+    });
   }
 
   ngOnInit(): void {
