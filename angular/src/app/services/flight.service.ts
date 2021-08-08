@@ -12,7 +12,10 @@ export class FlightService {
         this.f.id = newF.id;
         this.f.code = newF.code;
         this.f.airlines = newF.airlines;
-        this.f.availableclass = newF.availableclass;
+        this.f.businessClassAvailable = newF.businessClassAvailable;
+        this.f.economyClassAvailable = newF.economyClassAvailable;
+        this.f.businessClassPrice = newF.businessClassPrice;
+        this.f.economyClassPrice = newF.economyClassPrice;
         this.f.runson = newF.runson;
         this.f.from = newF.from;
         this.f.to = newF.to;
@@ -27,6 +30,7 @@ export class FlightService {
     constructor(private httpClient: HttpClient) {
     }
     getAllFlights() {
+        console.log("Called")
         return this.httpClient.get(this.url);
     }
 

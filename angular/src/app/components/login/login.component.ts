@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
     let u: User = this.loginForm.value;
     u.valid = true;
     this.userService.user = u;
-    this.validateUserLogin(u.email, u.password);
+    this.validateUserAndNavigate(u.email, u.password);
   }
 
   signUpUser() {
@@ -47,9 +47,12 @@ export class LoginComponent implements OnInit {
       });
   }
 
-  validateUserLogin(emailId: string, password: string) {
+  validateUserAndNavigate(emailId: string, password: string) {
     let filteredUserObservable$: Observable<User> = this.userService.getUserById(emailId);
     filteredUserObservable$.subscribe(filteredUserObservable => {
+      console.log(filteredUserObservable.password );
+      console.log( password);
+      console.log(filteredUserObservable.password == password);
       if(filteredUserObservable.password == password){
         if (emailId == "admin@gmail.com") {
           this.router.navigate(['/', 'admin', 'manageFlights']);

@@ -20,7 +20,10 @@ export class ManageflightsComponent implements OnInit {
     this.addFlightForm = new FormGroup({
       code: new FormControl("", [Validators.required]),
       airlines: new FormControl("", [Validators.required]),
-      availableclass: new FormControl("", [Validators.required]),
+      businessClassAvailable: new FormControl("", [Validators.required]),
+      economyClassAvailable: new FormControl("", [Validators.required]),
+      businessClassPrice: new FormControl("", [Validators.required]),
+      economyClassPrice: new FormControl("", [Validators.required]),
       runson: new FormControl("", [Validators.required]),
       from: new FormControl("", [Validators.required]),
       to: new FormControl("", [Validators.required]),
@@ -31,7 +34,10 @@ export class ManageflightsComponent implements OnInit {
       id: new FormControl(0, [Validators.required]),
       code: new FormControl("", [Validators.required]),
       airlines: new FormControl("", [Validators.required]),
-      availableclass: new FormControl("", [Validators.required]),
+      businessClassAvailable: new FormControl("", [Validators.required]),
+      economyClassAvailable: new FormControl("", [Validators.required]),
+      businessClassPrice: new FormControl("", [Validators.required]),
+      economyClassPrice: new FormControl("", [Validators.required]),
       runson: new FormControl("", [Validators.required]),
       from: new FormControl("", [Validators.required]),
       to: new FormControl("", [Validators.required]),
@@ -77,7 +83,6 @@ export class ManageflightsComponent implements OnInit {
   }
 
   modifyFlight() {
-    console.log(this.updateFlightForm.value)
     this.flightService.updateFlight(this.updateFlightForm.value)
       .subscribe((res: any) => {
         this.showUpdateFlightForm = false;

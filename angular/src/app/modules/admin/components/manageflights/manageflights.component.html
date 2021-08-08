@@ -16,13 +16,19 @@
         <input type="text" placeholder="id" name="id" formControlName="id" required>
         <input type="text" placeholder="Code" name="Code" formControlName="code" required>
         <input type="text" placeholder="Airlines" name="Airlines" formControlName="airlines" required>
-        <input type="text" placeholder="Availableclass" name="Availableclass" formControlName="availableclass" required>
         <input type="text" placeholder="RunsOn" name="RunsOn" formControlName="runson" required>
         <input type="text" placeholder="From" name="From" formControlName="from" required>
         <input type="text" placeholder="To" name="To" formControlName="to" required>
         <input type="text" placeholder="Contact" name="Contact" formControlName="contact" required>
         <input type="text" placeholder="Status" name="Status" formControlName="status" required>
 
+        <label> BusinessClass Available : </label><input type="checkbox" name="BusinessClassAvailable" formControlName="businessClassAvailable" required>
+        <br>
+        <input type="text" placeholder="BusinessClass Price" name="BusinessClassPrice" formControlName="businessClassPrice" *ngIf="updateFlightForm.controls.businessClassAvailable.value" required>
+        <label> EconomyClass Available : </label><input type="checkbox" name="EconomyClassAvailable" formControlName="economyClassAvailable" required>
+        <input type="text" placeholder="EconomyClass Price" name="EconomyClassPrice" formControlName="economyClassPrice" *ngIf="updateFlightForm.controls.economyClassAvailable.value" required>
+        <br>
+        <br>
         <button type="submit"  style="width: 50%;" class="editbtn"><i class="fa fa-fw fa-check"></i>Update</button><button type="submit"  style="width: 50%;" (click)="cancelUpdateForm()" class="deletebtn"><i class="fa fa-fw fa-remove"></i>Cancel</button>
       </div>
     </form>
@@ -33,13 +39,19 @@
       <div>
         <input type="text" placeholder="Code" name="Code" formControlName="code" required>
         <input type="text" placeholder="Airlines" name="Airlines" formControlName="airlines" required>
-        <input type="text" placeholder="Availableclass" name="Availableclass" formControlName="availableclass" required>
-        <input type="text" placeholder="RunsOn" name="RunsOn" formControlName="runson" required>
+       <input type="text" placeholder="RunsOn" name="RunsOn" formControlName="runson" required>
         <input type="text" placeholder="From" name="From" formControlName="from" required>
         <input type="text" placeholder="To" name="To" formControlName="to" required>
         <input type="text" placeholder="Contact" name="Contact" formControlName="contact" required>
         <input type="text" placeholder="Status" name="Status" formControlName="status" required>
 
+        <label> BusinessClass Available : </label><input type="checkbox" name="BusinessClassAvailable" formControlName="businessClassAvailable" required>
+        <br>
+        <input type="text" placeholder="BusinessClass Price" name="BusinessClassPrice" formControlName="businessClassPrice" *ngIf="addFlightForm.controls.businessClassAvailable.value" required>
+        <label> EconomyClass Available : </label><input type="checkbox" name="EconomyClassAvailable" formControlName="economyClassAvailable" required>
+        <input type="text" placeholder="EconomyClass Price" name="EconomyClassPrice" formControlName="economyClassPrice" *ngIf="addFlightForm.controls.economyClassAvailable.value" required>
+        <br>
+        <br>
         <button type="submit" style="width: 50%;" class="editbtn"><i class="fa fa-fw fa-check"></i>Save</button><button type="submit"  style="width: 50%;" (click)="cancelAddForm()" class="deletebtn"><i class="fa fa-fw fa-remove"></i>Cancel</button>
       </div>
     </form>
@@ -50,7 +62,8 @@
       <th>Id</th>
       <th>Code</th>
       <th>Airlines</th>
-      <th>Available Classes</th>
+      <th>BusinessClass Price</th>
+      <th>EconomyClass Price</th>
       <th>Runs on</th>
       <th>From</th>
       <th>To</th>
@@ -60,9 +73,10 @@
     
     <tr *ngFor="let flight of flights">
       <td>{{flight.id}}</td>
-      <td>{{flight.code}}</td>
+      <td><a [routerLink]="['/', 'admin', 'manageSchedule']" routerLinkActive="active" >{{flight.code}}</a></td>
       <td>{{flight.airlines}}</td>
-      <td>{{flight.availableclass}}</td>
+      <td>{{flight.businessClassPrice}}</td>
+      <td>{{flight.economyClassPrice}}</td>
       <td>{{flight.runson}}</td>
       <td>{{flight.from}}</td>
       <td>{{flight.to}}</td>

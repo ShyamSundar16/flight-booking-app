@@ -20,15 +20,40 @@
       "id": 1,
       "code": "INDGO101",
       "airlines": "Indigo",
-      "availableclass": [
-        "Business",
-        "Economy"
-      ],
-      "runson": [
-        "Sunday",
-        "Tuesday",
-        "Thursday"
-      ],
+      "businessClassAvailable": true,
+      "businessClassPrice": "4200",
+      "economyClassAvailable": true,
+      "economyClassPrice": "3500",
+      "runson": "Sunday,Tuesday,Thursday",
+      "from": "Chennai",
+      "to": "Mumbai",
+      "contact": "support@indigo.com",
+      "status": "Active"
+    },
+    {
+      "id": 2,
+      "code": "INDGO102",
+      "airlines": "Indigo",
+      "businessClassAvailable": true,
+      "economyClassAvailable": true,
+      "businessClassPrice": "5600",
+      "economyClassPrice": "3500",
+      "runson": "Monday,Wednesday,Friday",
+      "from": "Bangalore",
+      "to": "Pune",
+      "contact": "support@indigo.com",
+      "status": "Active"
+    }
+	,
+    {
+      "id": 3,
+      "code": "AIRINDO101",
+      "airlines": "Air India",
+      "businessClassAvailable": true,
+      "economyClassAvailable": true,
+      "businessClassPrice": "5600",
+      "economyClassPrice": "3500",
+      "runson": "Monday,Wednesday,Friday",
       "from": "Chennai",
       "to": "Mumbai",
       "contact": "support@indigo.com",
@@ -59,6 +84,15 @@
       "validTill": "2021-08-06T05:16:05.480Z",
       "status": "Active",
       "id": 2
+    }
+  ],
+  "schedule": [
+    {
+      "id": 1,
+      "code": "INDGO101",
+      "arrivalTime": "2021-08-14T05:16:05.00Z",
+      "depatureTime": "2021-08-14T05:16:35.00Z",
+      "status": "Suspend"
     }
   ]
 }

@@ -11,10 +11,13 @@ import { SearchFlightComponent } from './components/search-flight/search-flight.
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserValidatorGuard } from './gaurds/user-validator.guard';
 import { HttpClientModule } from '@angular/common/http';
+import { ContactComponent } from './components/contact/contact.component';
+import { FlightService } from './services/flight.service';
 
 const routes: Routes = [
   { path: "home", component: HomeComponent },
   { path: "login", component: LoginComponent },
+  { path: "contact", component: ContactComponent },
   { path: "searchFlight", component: SearchFlightComponent, canActivate: [UserValidatorGuard] },
   { path: "admin", loadChildren: () => import("./modules/admin/admin.module").then(m => m.AdminModule) },
   { path: "**", component: LoginComponent }
@@ -28,12 +31,13 @@ const routes: Routes = [
     FooterComponent,
     HomeComponent,
     LoginComponent,
-    SearchFlightComponent
+    SearchFlightComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule, RouterModule.forRoot(routes), ReactiveFormsModule,HttpClientModule
   ],
-  // providers: [UserService],
+   providers: [FlightService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -24,4 +24,11 @@ export class HeaderComponent implements OnInit {
    return this.userService.user.valid;
   }
 
+checkIfAdminUser(){
+  if(this.userService.user.email=="admin@gmail.com"){
+    return true;
+  }
+  return false;
+}
+
 }

@@ -1,8 +1,4 @@
-
 div.content {
-
-    /* Center and scale the image nicely */
-    background-position: center;
     margin-left: 200px;
     padding    : 1px 16px;
     height     : 1000px;
@@ -66,10 +62,42 @@ div.content {
   .editbtn {
     background-color: #04AA6D;
   }
-.select2-container .select2-selection--single{
-    height:34px !important;
-}
-.select2-container--default .select2-selection--single{
-         border: 1px solid #ccc !important; 
-     border-radius: 0px !important; 
-}
+  
+  .addbtn {
+    padding         : 14px 20px;
+    background-color: #04AA6D;
+    width: 25%;
+    float: left;
+  }
+  
+  input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  input[type=submit] {
+    width: 100%;
+    background-color: #04AA6D;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  input[type=submit]:hover {
+    background-color: #45a049;
+  }
+  
+  // div.container {
+  //   border-radius: 5px;
+  //   background-color: #f2f2f2;
+  //   padding: 20px;
+  // }
+  

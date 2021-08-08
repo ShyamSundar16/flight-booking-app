@@ -8,7 +8,8 @@ import { FlightService } from 'src/app/services/flight.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CouponService } from 'src/app/services/coupon.service';
-import { UserService } from 'src/app/services/user.service';
+import { ManagescheduleComponent } from './components/manageschedule/manageschedule.component';
+import { ScheduleService } from 'src/app/services/schedule.service';
 
 const routes: Routes = [
   {
@@ -18,6 +19,10 @@ const routes: Routes = [
   {
     path: "manageCoupons",
     component: ManagecouponComponent
+  },
+  {
+    path: "manageSchedule",
+    component: ManagescheduleComponent
   }
 ];
 
@@ -25,11 +30,12 @@ const routes: Routes = [
   declarations: [
     ManageflightsComponent,
     ManagecouponComponent,
-    SidenavComponent
+    SidenavComponent,
+    ManagescheduleComponent
   ],
   imports: [
     CommonModule,RouterModule.forChild(routes),HttpClientModule,ReactiveFormsModule
   ],
-  providers :[FlightService,CouponService]
+  providers :[FlightService,CouponService,ScheduleService]
 })
 export class AdminModule { }
