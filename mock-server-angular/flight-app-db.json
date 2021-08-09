@@ -79,6 +79,13 @@
   },
   "coupon": [
     {
+      "code": "FLY300",
+      "couponValue": "300",
+      "validTill": "2021-08-06T05:16:05.480Z",
+      "status": "Active",
+      "id": 1
+    },
+	 {
       "code": "FLY500",
       "couponValue": "500",
       "validTill": "2021-08-06T05:16:05.480Z",

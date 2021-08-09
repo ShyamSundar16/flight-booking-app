@@ -13,11 +13,16 @@ import { UserValidatorGuard } from './gaurds/user-validator.guard';
 import { HttpClientModule } from '@angular/common/http';
 import { ContactComponent } from './components/contact/contact.component';
 import { FlightService } from './services/flight.service';
+import { BookticketComponent } from './components/bookticket/bookticket.component';
+import { TickethistoryComponent } from './components/tickethistory/tickethistory.component';
+import { CouponService } from './services/coupon.service';
 
 const routes: Routes = [
   { path: "home", component: HomeComponent },
   { path: "login", component: LoginComponent },
   { path: "contact", component: ContactComponent },
+  { path: "bookTicket", component: BookticketComponent },
+  { path: "ticketHistory", component: TickethistoryComponent },
   { path: "searchFlight", component: SearchFlightComponent, canActivate: [UserValidatorGuard] },
   { path: "admin", loadChildren: () => import("./modules/admin/admin.module").then(m => m.AdminModule) },
   { path: "**", component: LoginComponent }
@@ -32,12 +37,14 @@ const routes: Routes = [
     HomeComponent,
     LoginComponent,
     SearchFlightComponent,
-    ContactComponent
+    ContactComponent,
+    BookticketComponent,
+    TickethistoryComponent
   ],
   imports: [
     BrowserModule, RouterModule.forRoot(routes), ReactiveFormsModule,HttpClientModule
   ],
-   providers: [FlightService],
+   providers: [FlightService,CouponService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

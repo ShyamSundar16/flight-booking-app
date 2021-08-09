@@ -20,6 +20,7 @@
       <td>
         <select class="form-control select2" (change)="updateSource($event)">
           <option>Select</option>
+
           <option *ngFor="let destination of destinations" [value]="destination">
             {{destination}}
           </option>
@@ -28,6 +29,7 @@
       <td>
         <select class="form-control select2" (change)="updateDestination($event)">
           <option>Select</option>
+
           <option *ngFor="let destination of destinations" [value]="destination">
             {{destination}}
           </option>
@@ -63,7 +65,7 @@
       <td>{{flight.from}}</td>
       <td>{{flight.to}}</td>
       <td>{{flight.status}}</td>
-      <td><button type="button" class="editbtn"><i class="fa fa-fw fa-edit"></i>Book</button></td>
+      <td><button type="button" class="editbtn" (click)="bookFlight(flight)"><i class="fa fa-fw fa-edit"></i>Book</button></td>
     </tr>
 
   </table>

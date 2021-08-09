@@ -1,0 +1,125 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+<div class="content">
+    <button type="button" class="addbtn" (click)="showAddForm()"><i class="fa fa-fw fa-plus"></i>Add Passenger</button>
+
+    <div class="container">
+
+        <form [formGroup]="addPassengerForm" class="form-inline" (ngSubmit)="addPassengers()"
+            *ngIf="showAddPassengerForm">
+            <div>
+                <input type="text" placeholder="Name" name="Name" formControlName="name" required>
+                <input type="text" placeholder="Gender" name="Gender" formControlName="gender" required>
+                <input type="text" placeholder="Age" name="Age" formControlName="age" required>
+                <input type="text" placeholder="Seat Number" name="SeatNumber" formControlName="seatNumber" required>
+
+                <br>
+                <select class="form-control select2" (change)="updateTravelClass($event)" formControlName="travelClass">
+                    <option>Select</option>
+                    <option *ngFor="let classType of travelClassType" [value]="classType">
+                        {{classType}}
+                    </option>
+                </select>
+                <select class="form-control select2" (change)="updateOptedFood($event)" formControlName="optedFood">
+                    <option>Select</option>
+                    <option *ngFor="let foodType of optedFoodType" [value]="foodType">
+                        {{foodType}}
+                    </option>
+                </select>
+                <br>
+                <button type="submit" style="width: 50%;" class="editbtn"><i
+                        class="fa fa-fw fa-check"></i>Save</button><button type="submit" style="width: 50%;"
+                    (click)="cancelAddForm()" class="deletebtn"><i class="fa fa-fw fa-remove"></i>Cancel</button>
+            </div>
+        </form>
+    </div>
+    <table id="flights">
+        <tr>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Age</th>
+            <th>Opted Food</th>
+            <th>Seat Number</th>
+            <th>Class</th>
+        </tr>
+
+        <tr *ngFor="let passenger of passesngers">
+            <td>{{passenger.name}}</td>
+            <td>{{passenger.gender}}</td>
+            <td>{{passenger.age}}</td>
+            <td>{{passenger.optedFood}}</td>
+            <td>{{passenger.seatNumber}}</td>
+            <td>{{passenger.travelClass}}</td>
+        </tr>
+    </table>
+
+    <div class="row">
+
+        <div class="col-75" *ngIf="showPay">
+            <div class="col-50">
+                <h4>Available Coupons</h4>
+                <form [formGroup]="couponForm" class="form-inline" (ngSubmit)="applyCoupon()" >
+                    <ul *ngFor="let coupon of coupons">
+                        <li>{{coupon.code}}</li>
+                    </ul>
+
+                    <div class="row">
+                        <div class="col-50">
+                            <label for="couponCode">Use Coupon</label>
+                            <select class="form-control select2" (change)="updateOptedCoupon($event)" formControlName="couponCode">
+                                <option>Select</option>
+                                <option *ngFor="let coupon of coupons" [value]="coupon.code">
+                                    {{coupon.code}}
+                                </option>
+                            </select>
+                            <button type="submit" [disabled]="disableApplyCoupon" style="width: 25%;" class="editbtn">Apply</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="container">
+
+
+                <form action="/action_page.php">
+
+                    <div class="row">
+
+                        <div class="col-50">
+                            <h3>Payment</h3>
+                            <label for="fname">Accepted Cards</label>
+                            <div class="icon-container">
+                                <i class="fa fa-cc-visa" style="color:navy;"></i>
+                                <i class="fa fa-cc-amex" style="color:blue;"></i>
+                                <i class="fa fa-cc-mastercard" style="color:red;"></i>
+                                <i class="fa fa-cc-discover" style="color:orange;"></i>
+                            </div>
+                            <label for="cname">Name on Card</label>
+                            <input type="text" id="cname" name="cardname" placeholder="John More Doe">
+                            <label for="ccnum">Credit card number</label>
+                            <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
+                            <label for="expmonth">Exp Month</label>
+                            <input type="text" id="expmonth" name="expmonth" placeholder="September">
+                            <div class="row">
+                                <div class="col-50">
+                                    <label for="expyear">Exp Year</label>
+                                    <input type="text" id="expyear" name="expyear" placeholder="2018">
+                                </div>
+                                <div class="col-50">
+                                    <label for="cvv">CVV</label>
+                                    <input type="text" id="cvv" name="cvv" placeholder="352">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <input type="submit" value="Continue to pay Rs.
+          {{totalAmount}}" class="btn">
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>

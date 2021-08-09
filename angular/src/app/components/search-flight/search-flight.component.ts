@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { filter, map } from "rxjs/operators";
 import { Flight } from 'src/app/models/Flight';
@@ -18,7 +19,7 @@ export class SearchFlightComponent implements OnInit {
   dateOfJourney: Date = new Date();
   filteredFlights: Flight[] = [];
   showSearchTable:boolean=false;
-  constructor(public userService: UserService, public flightService: FlightService) {
+  constructor(public userService: UserService, public flightService: FlightService,private router: Router) {
   }
 
   ngOnInit(): void {
@@ -53,6 +54,11 @@ export class SearchFlightComponent implements OnInit {
         this.filteredFlights = res;
         this.filteredFlights= this.filteredFlights.filter(flight => flight.from == this.source && flight.to == this.destination)
       })
+  }
+
+  bookFlight(flight:Flight){
+    this.flightService.flight=flight;
+    this.router.navigate(["bookTicket"]);
   }
 
 }

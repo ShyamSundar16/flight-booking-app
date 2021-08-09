@@ -50,9 +50,7 @@ export class LoginComponent implements OnInit {
   validateUserAndNavigate(emailId: string, password: string) {
     let filteredUserObservable$: Observable<User> = this.userService.getUserById(emailId);
     filteredUserObservable$.subscribe(filteredUserObservable => {
-      console.log(filteredUserObservable.password );
-      console.log( password);
-      console.log(filteredUserObservable.password == password);
+      
       if(filteredUserObservable.password == password){
         if (emailId == "admin@gmail.com") {
           this.router.navigate(['/', 'admin', 'manageFlights']);

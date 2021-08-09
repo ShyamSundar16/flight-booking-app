@@ -58,7 +58,6 @@ export class ManagecouponComponent implements OnInit {
   findAllCoupons() {
     this.couponService.getAllCoupons()
       .subscribe((res: any) => {
-        console.log(res);
         this.coupons = res;
       })
   }

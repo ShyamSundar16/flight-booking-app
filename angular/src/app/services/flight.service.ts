@@ -30,7 +30,6 @@ export class FlightService {
     constructor(private httpClient: HttpClient) {
     }
     getAllFlights() {
-        console.log("Called")
         return this.httpClient.get(this.url);
     }
 
