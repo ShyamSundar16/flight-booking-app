@@ -23,6 +23,9 @@ export class HeaderComponent implements OnInit {
   getUserSession(){
    return this.userService.user.valid;
   }
+  clearSession(){
+    sessionStorage.clear();
+  }
 
 checkIfAdminUser(){
   if(this.userService.user.email=="admin@gmail.com"){

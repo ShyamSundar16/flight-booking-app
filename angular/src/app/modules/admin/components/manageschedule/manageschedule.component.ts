@@ -15,27 +15,28 @@ export class ManagescheduleComponent implements OnInit {
   showUpdateScheduleForm: boolean = false;
   showAddScheduleForm: boolean = false;
   schedules: Schedule[] = [];
-  constructor(public scheduleService: ScheduleService,private router: Router) {
-    
+  constructor(public scheduleService: ScheduleService, private router: Router) {
+
+
     this.addScheduleForm = new FormGroup({
       code: new FormControl("", [Validators.required]),
-      scheduledDate: new FormControl(new Date(), [Validators.required]),
-      arrivalTime: new FormControl(new Date(), [Validators.required]),
-      depatureTime: new FormControl(new Date, [Validators.required]),
+      scheduledDate: new FormControl("", [Validators.required]),
+      arrivalTime: new FormControl("", [Validators.required]),
+      depatureTime: new FormControl("", [Validators.required]),
       status: new FormControl("", [Validators.required])
     })
 
     this.updateScheduleForm = new FormGroup({
       id: new FormControl(0, [Validators.required]),
       code: new FormControl("", [Validators.required]),
-      scheduledDate: new FormControl(new Date, [Validators.required]),
-      arrivalTime: new FormControl(new Date, [Validators.required]),
-      depatureTime: new FormControl(new Date, [Validators.required]),
+      scheduledDate: new FormControl("", [Validators.required]),
+      arrivalTime: new FormControl("", [Validators.required]),
+      depatureTime: new FormControl("", [Validators.required]),
       status: new FormControl("", [Validators.required])
     })
 
     this.getSchedule();
-   }
+  }
 
   ngOnInit(): void {
   }
@@ -73,6 +74,14 @@ export class ManagescheduleComponent implements OnInit {
   }
 
   addSchedule() {
+    let addData: Schedule = this.addScheduleForm.value;
+    // let a:string="13:30";
+    // let time:any[]=[];
+    // time=a.split(":")
+    // let arrTime:Date= new Date;
+    // arrTime.setHours(time[0]);
+    // arrTime.setMinutes(time[1]);
+    //console.log(addData.scheduledDate.toLocaleDateString())
     this.scheduleService.saveSchedule(this.addScheduleForm.value)
       .subscribe((res: any) => {
         this.addScheduleForm.reset();

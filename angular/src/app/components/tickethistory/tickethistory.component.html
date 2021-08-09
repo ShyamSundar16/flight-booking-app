@@ -4,41 +4,65 @@
 
 
 <div class="content">
-    
-  <table id="flights">
-    <tr>
-      <th>PNR</th>
-      <th>Flight Code</th>
-      <th>No. of Passesngers</th>
-      <!-- <th>Passesngers</th> -->
-      <th>From</th>
-      <th>To</th>
-      <th>Date of Journey</th>
-      <th>Arrival Time</th>
-      <th>Depature Time</th>
-      <th>Amount Paid</th>
-      <th>Status</th>
-    </tr>
-    
-    <tr *ngFor="let ticket of tickets">
-      <td>{{ticket.pnr}}</td>
-      <td>{{ticket.flightCode}}</td>
-      <td>{{ticket.numberOfPassesngers}}</td>
-      <!-- <td>{{flight.passesngers}}</td> seperate Table-->
-      <td>{{ticket.from}}</td>
-      <td>{{ticket.to}}</td>
-      <td>{{ticket.dateOfJourney}}</td>
-      <td>{{ticket.arrivalTime}}</td>
-      <td>{{ticket.depatureTime}}</td>
-      <td>{{ticket.amountPaid}}</td>
-      <td>{{ticket.status}}</td>
+  <div class="container">
+    <table id="flights">
+      <tr>
+        <th>PNR</th>
+        <th>Flight Code</th>
+        <th>Passengers Count</th>
+        <th>From</th>
+        <th>To</th>
+        <th>Date of Journey</th>
+        <th>Arrival Time</th>
+        <th>Depature Time</th>
+        <th>Amount Paid</th>
+        <th>Status</th>
+      </tr>
 
+      <tr *ngFor="let ticket of tickets">
+        <td>{{ticket.pnr}}</td>
+        <td>{{ticket.flightCode}}</td>
+        <td>{{ticket.numberOfPassesngers}}</td>
+        <!-- <td>{{flight.passesngers}}</td> seperate Table-->
+        <td>{{ticket.from}}</td>
+        <td>{{ticket.to}}</td>
+        <td>{{ticket.dateOfJourney}}</td>
+        <td>{{ticket.arrivalTime}}</td>
+        <td>{{ticket.depatureTime}}</td>
+        <td>{{ticket.amountPaid}}</td>
+        <td>{{ticket.status}}</td>
 
-      <!-- <td><button type="button" class="deletebtn" (click)="deleteFlightById(flight.id)"><i
-            class="fa fa-fw fa-trash"></i>Delete</button></td>
-      <td><button  type="button" class="editbtn" (click)="showUpdateForm(flight)"><i
-            class="fa fa-fw fa-edit"></i>Edit</button></td> -->
-    </tr>
+        <td><button type="button" class="editbtn" (click)="viewPassengers(ticket)"
+          ><i class="fa fa-fw fa-eye"></i>View</button></td>
+        <td><button type="button" class="deletebtn" (click)="cancelTicket(ticket)"><i
+            class="fa fa-fw fa-trash"></i>Cancel</button></td>>
+      </tr>
 
-  </table>
+    </table>
+  </div>
+<br><br>
+  <div class="container">
+    <form [formGroup]="viewPassengersForm" class="form-inline" *ngIf="showViewPassengersForm">
+      <table id="flights">
+        <tr>
+          <th>Name</th>
+          <th>Gender</th>
+          <th>Age</th>
+          <th>Opted Food</th>
+          <th>Seat Number</th>
+          <th>Travel Class</th>
+        </tr>
+        <tr *ngFor="let passenger of passengers">
+          <td>{{passenger.name}}</td>
+          <td>{{passenger.gender}}</td>
+          <td>{{passenger.age}}</td>
+          <td>{{passenger.optedFood}}</td>
+          <td>{{passenger.seatNumber}}</td>
+          <td>{{passenger.travelClass}}</td>
+          <td><button type="button" class="deletebtn" (click)="cancelviewPassengersForm()"><i
+            class="fa fa-fw fa-close"></i>Close</button></td>
+        </tr>
+      </table>
+    </form>
+  </div>
 </div>

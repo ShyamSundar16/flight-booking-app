@@ -54,9 +54,11 @@
       <th>EconomyClass Price</th>
       <th>From</th>
       <th>To</th>
+      <th>Arrival</th>
+      <th>Depature</th>
       <th>Status</th>
     </tr>
-    <tr *ngFor="let flight of filteredFlights">
+    <tr *ngFor="let flight of flightsBasedOnSchedule">
       <td>{{flight.id}}</td>
       <td>{{flight.code}}</td>
       <td>{{flight.airlines}}</td>
@@ -64,6 +66,8 @@
       <td>{{flight.economyClassPrice}}</td>
       <td>{{flight.from}}</td>
       <td>{{flight.to}}</td>
+      <td>{{flight.arrivalTime}}</td>
+      <td>{{flight.depatureTime}}</td>
       <td>{{flight.status}}</td>
       <td><button type="button" class="editbtn" (click)="bookFlight(flight)"><i class="fa fa-fw fa-edit"></i>Book</button></td>
     </tr>

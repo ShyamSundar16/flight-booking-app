@@ -1,8 +1,8 @@
 {
   "tickets": [
     {
-      "id": "INDGO1013352",
-      "pnr": "INDGO1013352",
+      "id": "INDGO101441",
+      "pnr": "INDGO101441",
       "flightCode": "INDGO101",
       "bookedBy": "shyam@gmail.com",
       "numberOfPassesngers": 1,
@@ -18,42 +18,10 @@
       ],
       "from": "Chennai",
       "to": "Mumbai",
-      "dateOfJourney": "2021-08-09T03:21:13.485Z",
-      "arrivalTime": "",
-      "depatureTime": "",
+      "dateOfJourney": "14/08/2021",
+      "arrivalTime": "13:30",
+      "depatureTime": "14.10",
       "amountPaid": 3700,
-      "status": "Active"
-    },
-    {
-      "id": "AIRINDO1013675",
-      "pnr": "AIRINDO1013675",
-      "flightCode": "AIRINDO101",
-      "bookedBy": "shyam@gmail.com",
-      "numberOfPassesngers": 2,
-      "passesngers": [
-        {
-          "name": "Sundar",
-          "gender": "Male",
-          "seatNumber": "A3",
-          "optedFood": "Veg",
-          "travelClass": "Business",
-          "age": "24"
-        },
-        {
-          "name": "Vignesh",
-          "gender": "Male",
-          "seatNumber": "A2",
-          "optedFood": "Veg",
-          "travelClass": "Business",
-          "age": "16"
-        }
-      ],
-      "from": "Chennai",
-      "to": "Mumbai",
-      "dateOfJourney": "2021-08-09T03:25:40.546Z",
-      "arrivalTime": "",
-      "depatureTime": "",
-      "amountPaid": 10700,
       "status": "Active"
     }
   ],
@@ -152,20 +120,28 @@
   ],
   "schedule": [
     {
-      "id": 2,
-      "code": "INDGO102",
-      "scheduledDate": "2021-08-09T04:02:50.568Z",
-      "arrivalTime": "2021-08-09T06:02:50.568Z",
-      "depatureTime": "2021-08-09T06:30:50.568Z",
-      "status": "Active"
+      "code": "INDGO101",
+      "scheduledDate": "14/08/2021",
+      "arrivalTime": "13:30",
+      "depatureTime": "14.10",
+      "status": "Active",
+      "id": 1
     },
     {
-      "id": 3,
-      "code": "INDGO101",
-      "scheduledDate": "2021-08-09T04:06:08.307Z",
-      "arrivalTime": "2021-08-09T07:06:50.307Z",
-      "depatureTime": "2021-08-09T07:40:08.307Z",
-      "status": "Active"
+      "code": "AIRINDO101",
+      "scheduledDate": "14/08/2021",
+      "arrivalTime": "07:10",
+      "depatureTime": "07:40",
+      "status": "Active",
+      "id": 2
+    },
+    {
+      "code": "AIRINDO101",
+      "scheduledDate": "16/08/2021",
+      "arrivalTime": "07:10",
+      "depatureTime": "07:40",
+      "status": "Active",
+      "id": 3
     }
   ]
 }

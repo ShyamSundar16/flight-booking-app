@@ -34,8 +34,8 @@ export class BookticketComponent implements OnInit {
   disableApplyCoupon: boolean = false;
 
   constructor(public flightService: FlightService, public couponService: CouponService,
-     public searchFlightComponent: SearchFlightComponent, public userService: UserService,
-     public tickerService:TicketService,public router:Router) {
+    public searchFlightComponent: SearchFlightComponent, public userService: UserService,
+    public tickerService: TicketService, public router: Router) {
     this.addPassengerForm = new FormGroup({
       name: new FormControl("", [Validators.required]),
       gender: new FormControl("", [Validators.required]),
@@ -48,14 +48,14 @@ export class BookticketComponent implements OnInit {
       this.couponForm = new FormGroup({
         couponCode: new FormControl("", Validators.required)
       })
-      this.payForm= new FormGroup({
-        name: new FormControl("", [Validators.required]),
-        cardnumber: new FormControl(0, [Validators.required]),
-        expMonth: new FormControl("", [Validators.required]),
-        expYear: new FormControl("", [Validators.required]),
-        cvv: new FormControl("", [Validators.required]),
+    this.payForm = new FormGroup({
+      name: new FormControl("", [Validators.required]),
+      cardnumber: new FormControl(0, [Validators.required]),
+      expMonth: new FormControl("", [Validators.required]),
+      expYear: new FormControl("", [Validators.required]),
+      cvv: new FormControl("", [Validators.required]),
 
-      })
+    })
   }
 
   ngOnInit(): void {
@@ -137,37 +137,27 @@ export class BookticketComponent implements OnInit {
 
   payAndBookTicket() {
 
-    console.log("Entered book Ticket")
     let flag: boolean = true;
     let generatedPNR: string = "";
-    // while (flag) {
-    //   generatedPNR = this.flightService.flight.code + this.getRandomInt(1, 5000);
-    //   if (!this.pnrList.includes(generatedPNR)) {
-    //     this.pnrList.push(generatedPNR)
-    //   }
-    // }
+
     generatedPNR = this.flightService.flight.code + this.getRandomInt(1, 5000);
-    console.log("Creating Ticket")
 
     let ticket = new Ticket();
     ticket.flightCode = this.flightService.flight.code;
     ticket.from = this.flightService.flight.from;
     ticket.to = this.flightService.flight.to;
-    ticket.dateOfJourney = this.searchFlightComponent.dateOfJourney;
+    ticket.arrivalTime = this.flightService.flight.arrivalTime;
+    ticket.depatureTime = this.flightService.flight.depatureTime;
+    ticket.dateOfJourney = this.flightService.flight.dateOfDepature;
     ticket.bookedBy = this.userService.user.email;
     ticket.status = "Active";
-    ticket.amountPaid=this.totalAmount;
+    ticket.amountPaid = this.totalAmount;
     ticket.numberOfPassesngers = this.passengersCount;
     ticket.passesngers = this.passesngers;
     ticket.pnr = generatedPNR;
     ticket.id = generatedPNR;
-
-    console.log("Ticket: "+ticket)
-
-    this.tickerService.saveTickets(ticket).subscribe((res) =>{
-
+    this.tickerService.saveTickets(ticket).subscribe((res) => {
     });
-    console.log("Saved: ")
 
     this.router.navigate(["ticketHistory"]);
   }

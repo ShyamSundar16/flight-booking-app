@@ -21,6 +21,9 @@ export class FlightService {
         this.f.to = newF.to;
         this.f.contact = newF.contact;
         this.f.status = newF.status;
+        this.f.arrivalTime = newF.arrivalTime;
+        this.f.depatureTime = newF.depatureTime;
+        this.f.dateOfDepature = newF.dateOfDepature;
 
     }
 

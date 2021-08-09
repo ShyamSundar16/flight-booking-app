@@ -11,7 +11,9 @@ export class Flight {
     to: string = "";
     contact: string = "";
     status: string = "";
-    //date: Date = new Date();  
+    arrivalTime: string = "";  
+    depatureTime: string = "";
+    dateOfDepature: string ="";  
 }
 
 
