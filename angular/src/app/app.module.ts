@@ -16,6 +16,7 @@ import { FlightService } from './services/flight.service';
 import { BookticketComponent } from './components/bookticket/bookticket.component';
 import { TickethistoryComponent } from './components/tickethistory/tickethistory.component';
 import { CouponService } from './services/coupon.service';
+import { TicketService } from './services/ticket.service';
 
 const routes: Routes = [
   { path: "home", component: HomeComponent },
@@ -44,7 +45,7 @@ const routes: Routes = [
   imports: [
     BrowserModule, RouterModule.forRoot(routes), ReactiveFormsModule,HttpClientModule
   ],
-   providers: [FlightService,CouponService],
+   providers: [FlightService,CouponService,TicketService,SearchFlightComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

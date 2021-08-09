@@ -1,1 +1,44 @@
-<p>tickethistory works!</p>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+  integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+<div class="content">
+    
+  <table id="flights">
+    <tr>
+      <th>PNR</th>
+      <th>Flight Code</th>
+      <th>No. of Passesngers</th>
+      <!-- <th>Passesngers</th> -->
+      <th>From</th>
+      <th>To</th>
+      <th>Date of Journey</th>
+      <th>Arrival Time</th>
+      <th>Depature Time</th>
+      <th>Amount Paid</th>
+      <th>Status</th>
+    </tr>
+    
+    <tr *ngFor="let ticket of tickets">
+      <td>{{ticket.pnr}}</td>
+      <td>{{ticket.flightCode}}</td>
+      <td>{{ticket.numberOfPassesngers}}</td>
+      <!-- <td>{{flight.passesngers}}</td> seperate Table-->
+      <td>{{ticket.from}}</td>
+      <td>{{ticket.to}}</td>
+      <td>{{ticket.dateOfJourney}}</td>
+      <td>{{ticket.arrivalTime}}</td>
+      <td>{{ticket.depatureTime}}</td>
+      <td>{{ticket.amountPaid}}</td>
+      <td>{{ticket.status}}</td>
+
+
+      <!-- <td><button type="button" class="deletebtn" (click)="deleteFlightById(flight.id)"><i
+            class="fa fa-fw fa-trash"></i>Delete</button></td>
+      <td><button  type="button" class="editbtn" (click)="showUpdateForm(flight)"><i
+            class="fa fa-fw fa-edit"></i>Edit</button></td> -->
+    </tr>
+
+  </table>
+</div>

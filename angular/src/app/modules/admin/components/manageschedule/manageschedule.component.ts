@@ -11,15 +11,26 @@ import { ScheduleService } from 'src/app/services/schedule.service';
 })
 export class ManagescheduleComponent implements OnInit {
   updateScheduleForm: FormGroup;
+  addScheduleForm: FormGroup;
   showUpdateScheduleForm: boolean = false;
+  showAddScheduleForm: boolean = false;
   schedules: Schedule[] = [];
   constructor(public scheduleService: ScheduleService,private router: Router) {
     
+    this.addScheduleForm = new FormGroup({
+      code: new FormControl("", [Validators.required]),
+      scheduledDate: new FormControl(new Date(), [Validators.required]),
+      arrivalTime: new FormControl(new Date(), [Validators.required]),
+      depatureTime: new FormControl(new Date, [Validators.required]),
+      status: new FormControl("", [Validators.required])
+    })
+
     this.updateScheduleForm = new FormGroup({
       id: new FormControl(0, [Validators.required]),
       code: new FormControl("", [Validators.required]),
-      arrivalTime: new FormControl("", [Validators.required]),
-      depatureTime: new FormControl("", [Validators.required]),
+      scheduledDate: new FormControl(new Date, [Validators.required]),
+      arrivalTime: new FormControl(new Date, [Validators.required]),
+      depatureTime: new FormControl(new Date, [Validators.required]),
       status: new FormControl("", [Validators.required])
     })
 
@@ -34,6 +45,13 @@ export class ManagescheduleComponent implements OnInit {
     this.showUpdateScheduleForm = true;
   }
 
+  showAddForm() {
+    this.showAddScheduleForm = true;
+  }
+
+  cancelAddForm() {
+    this.showAddScheduleForm = false;
+  }
   cancelUpdateForm() {
     this.showUpdateScheduleForm = false;
   }
@@ -50,6 +68,22 @@ export class ManagescheduleComponent implements OnInit {
     this.scheduleService.updateSchedule(this.updateScheduleForm.value)
       .subscribe((res: any) => {
         this.showUpdateScheduleForm = false;
+        this.getSchedule()
+      });
+  }
+
+  addSchedule() {
+    this.scheduleService.saveSchedule(this.addScheduleForm.value)
+      .subscribe((res: any) => {
+        this.addScheduleForm.reset();
+        this.showAddScheduleForm = false;
+        this.getSchedule();
+      });
+  }
+
+  deleteSchdeuleById(id: number) {
+    this.scheduleService.deleteSchedule(id)
+      .subscribe((res: any) => {
         this.getSchedule()
       });
   }
