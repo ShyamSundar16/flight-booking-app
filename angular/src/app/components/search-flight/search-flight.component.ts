@@ -22,6 +22,18 @@ export class SearchFlightComponent implements OnInit {
   filteredFlights: Flight[] = [];
   flightsBasedOnSchedule: Flight[] = [];
   showSearchTable: boolean = false;
+  selectedOnwordFlight: Flight = new Flight;
+
+
+  returnSource: string = "";
+  returnDestination: string = "";
+  dateOfReturnJourney: Date = new Date();
+  roundTrip: boolean = false;
+  filteredReturnFlights: Flight[] = [];
+  returnFlightsBasedOnSchedule: Flight[] = [];
+  showReturnSearchTable: boolean = false;
+  selectedReturnFlight: Flight = new Flight;
+
   constructor(public userService: UserService, public flightService: FlightService
     , public scheduleService: ScheduleService, private router: Router) {
   }
@@ -52,39 +64,105 @@ export class SearchFlightComponent implements OnInit {
     return this.showSearchTable;
   }
   searchFlights() {
-    this.flightsBasedOnSchedule=[];
+    this.flightsBasedOnSchedule = [];
+    this.returnFlightsBasedOnSchedule = [];
     this.showSearchTable = true;
     this.flightService.getAllFlights()
       .subscribe((res: any) => {
         this.filteredFlights = res;
+        this.filteredReturnFlights = res;
         this.filteredFlights = this.filteredFlights.filter(flight => flight.from == this.source && flight.to == this.destination)
-       
         this.scheduleService.getScheduleInfo()
           .subscribe((res: any) => {
             let schedules: Schedule[] = res;
             let doj: string = this.dateOfJourney + "";
             let matchDate: string = ";"
-
             schedules.forEach(schedule => {
               let schDate: string[] = [];
               schDate = schedule.scheduledDate.split("/");
               matchDate = schDate[2] + "-" + schDate[1] + "-" + schDate[0];
               if (matchDate == doj) {
-                let item1:Flight = <Flight>this.filteredFlights.find(i => i.code === schedule.code);
-                item1.arrivalTime=schedule.arrivalTime;
-                item1.depatureTime=schedule.depatureTime;
-                item1.status=schedule.status;
-                item1.dateOfDepature=schedule.scheduledDate;
-                this.flightsBasedOnSchedule.push(item1);
+
+                this.filteredFlights.forEach(flight => {
+                  if (flight.code == schedule.code) {
+                    flight.arrivalTime = schedule.arrivalTime;
+                    flight.depatureTime = schedule.depatureTime;
+                    flight.status = schedule.status;
+                    flight.dateOfDepature = schedule.scheduledDate;
+                    this.flightsBasedOnSchedule.push(flight);
+
+                  }
+                })
               }
             });
+
           })
+        if (this.roundTrip) {
+          this.showReturnSearchTable = true;
+          this.filteredReturnFlights = this.filteredReturnFlights.filter(flight =>
+            flight.from == this.destination && flight.to == this.source)
+          this.scheduleService.getScheduleInfo()
+            .subscribe((res: any) => {
+              let schedules: Schedule[] = res;
+              let doj: string = this.dateOfReturnJourney + "";
+              let matchDate: string = ";"
+              schedules.forEach(schedule => {
+                let schDate: string[] = [];
+                schDate = schedule.scheduledDate.split("/");
+                matchDate = schDate[2] + "-" + schDate[1] + "-" + schDate[0];
+                if (matchDate == doj) {
+                  this.filteredReturnFlights.forEach(flight => {
+                    if (flight.code == schedule.code) {
+                      flight.arrivalTime = schedule.arrivalTime;
+                      flight.depatureTime = schedule.depatureTime;
+                      flight.status = schedule.status;
+                      flight.dateOfDepature = schedule.scheduledDate;
+                      this.returnFlightsBasedOnSchedule.push(flight);
+
+                    }
+                  })
+                }
+              });
+
+            })
+        }
       })
   }
 
-  bookFlight(flight: Flight) {
-    this.flightService.flight = flight;
+  bookFlight() {
+    sessionStorage.OnwardFlight = JSON.stringify( this.selectedOnwordFlight);
+    if (this.roundTrip) {
+      sessionStorage.roundTrip = this.roundTrip;
+      sessionStorage.ReturnFlight = JSON.stringify(this.selectedReturnFlight);
+    }
     this.router.navigate(["bookTicket"]);
   }
+
+
+  setOneWayTrip() {
+    this.roundTrip = false;
+  }
+  setRoundWayTrip() {
+    this.roundTrip = true;
+
+  }
+
+
+  updateReturnDate(e: any) {
+    this.dateOfReturnJourney = e.target.value
+  }
+
+  viewReturnSearchResults() {
+    return this.showReturnSearchTable;
+  }
+
+  addOnwardFlight(flight: Flight) {
+    this.selectedOnwordFlight = flight;
+  }
+
+  addReturnFlight(flight: Flight) {
+    this.selectedReturnFlight = flight;
+  }
+
 
 }

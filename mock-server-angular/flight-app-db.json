@@ -1,8 +1,8 @@
 {
   "tickets": [
     {
-      "id": "INDGO101441",
-      "pnr": "INDGO101441",
+      "id": "INDGO1012320",
+      "pnr": "INDGO1012320",
       "flightCode": "INDGO101",
       "bookedBy": "shyam@gmail.com",
       "numberOfPassesngers": 1,
@@ -21,7 +21,31 @@
       "dateOfJourney": "14/08/2021",
       "arrivalTime": "13:30",
       "depatureTime": "14.10",
-      "amountPaid": 3700,
+      "amountPaid": 4750,
+      "status": "Active"
+    },
+    {
+      "id": "AIRINDO1011549",
+      "pnr": "AIRINDO1011549",
+      "flightCode": "AIRINDO101",
+      "bookedBy": "shyam@gmail.com",
+      "numberOfPassesngers": 1,
+      "passesngers": [
+        {
+          "name": "Shyam",
+          "gender": "Male",
+          "seatNumber": "A2",
+          "optedFood": "Veg",
+          "travelClass": "Business",
+          "age": "24"
+        }
+      ],
+      "from": "Mumbai",
+      "to": "Chennai",
+      "dateOfJourney": "16/08/2021",
+      "arrivalTime": "07:10",
+      "depatureTime": "07:40",
+      "amountPaid": 4750,
       "status": "Active"
     }
   ],
@@ -79,9 +103,23 @@
       "businessClassPrice": "5600",
       "economyClassPrice": "3500",
       "runson": "Monday,Wednesday,Friday",
+      "from": "Mumbai",
+      "to": "Chennai",
+      "contact": "support@indigo.com",
+      "status": "Active"
+    },
+    {
+      "id": 4,
+      "code": "AIRINDO101",
+      "airlines": "Air India",
+      "businessClassAvailable": true,
+      "economyClassAvailable": true,
+      "businessClassPrice": "5600",
+      "economyClassPrice": "3500",
+      "runson": "Monday,Wednesday,Friday",
       "from": "Chennai",
       "to": "Mumbai",
-      "contact": "support@indigo.com",
+      "contact": "support@airindia.com",
       "status": "Active"
     }
   ],

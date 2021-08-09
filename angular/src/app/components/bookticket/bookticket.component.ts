@@ -3,6 +3,7 @@ import { tick } from '@angular/core/testing';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Coupon } from 'src/app/models/Coupon';
+import { Flight } from 'src/app/models/Flight';
 import { Passenger } from 'src/app/models/Passenger';
 import { Ticket } from 'src/app/models/Ticket';
 import { CouponService } from 'src/app/services/coupon.service';
@@ -33,6 +34,10 @@ export class BookticketComponent implements OnInit {
   showPay: boolean = false;
   disableApplyCoupon: boolean = false;
 
+  onwardFligt: Flight = new Flight;
+  returnFligt: Flight = new Flight;
+  roundtripAvailable: boolean = false;
+
   constructor(public flightService: FlightService, public couponService: CouponService,
     public searchFlightComponent: SearchFlightComponent, public userService: UserService,
     public tickerService: TicketService, public router: Router) {
@@ -56,6 +61,7 @@ export class BookticketComponent implements OnInit {
       cvv: new FormControl("", [Validators.required]),
 
     })
+    this.setFlightDetails();
   }
 
   ngOnInit(): void {
@@ -103,17 +109,30 @@ export class BookticketComponent implements OnInit {
   addPassengers() {
     this.passengersCount++;
     this.passesngers.push(this.addPassengerForm.value);
-
     this.addPassengerForm.reset();
     this.showAddPassengerForm = false;
-
+    
     if (this.selectedTravelClass == "Business") {
-      let price: number = this.flightService.flight.businessClassPrice;
+      let price: number = this.onwardFligt.businessClassPrice;
       this.totalAmount = +this.totalAmount + +price;
     }
+
     if (this.selectedTravelClass == "Economy") {
-      let price: number = this.flightService.flight.economyClassPrice;
+      let price: number = this.onwardFligt.economyClassPrice;
       this.totalAmount = +this.totalAmount + +price;
+    }
+
+
+    if (this.roundtripAvailable) {
+      if (this.selectedTravelClass == "Business") {
+        let price: number = this.returnFligt.businessClassPrice;
+        this.totalAmount = +this.totalAmount + +price;
+      }
+      if (this.selectedTravelClass == "Economy") {
+        let price: number = this.returnFligt.economyClassPrice;
+        this.totalAmount = +this.totalAmount + +price;
+      }
+
     }
     this.showPay = true;
     this.getAvailableCoupons();
@@ -136,36 +155,64 @@ export class BookticketComponent implements OnInit {
   }
 
   payAndBookTicket() {
+    let generatedPNROnward: string = "";
 
-    let flag: boolean = true;
-    let generatedPNR: string = "";
+    generatedPNROnward = this.onwardFligt.code + this.getRandomInt(1, 5000);
 
-    generatedPNR = this.flightService.flight.code + this.getRandomInt(1, 5000);
-
-    let ticket = new Ticket();
-    ticket.flightCode = this.flightService.flight.code;
-    ticket.from = this.flightService.flight.from;
-    ticket.to = this.flightService.flight.to;
-    ticket.arrivalTime = this.flightService.flight.arrivalTime;
-    ticket.depatureTime = this.flightService.flight.depatureTime;
-    ticket.dateOfJourney = this.flightService.flight.dateOfDepature;
-    ticket.bookedBy = this.userService.user.email;
-    ticket.status = "Active";
-    ticket.amountPaid = this.totalAmount;
-    ticket.numberOfPassesngers = this.passengersCount;
-    ticket.passesngers = this.passesngers;
-    ticket.pnr = generatedPNR;
-    ticket.id = generatedPNR;
-    this.tickerService.saveTickets(ticket).subscribe((res) => {
+    let onwardTicket = new Ticket();
+    onwardTicket.flightCode = this.onwardFligt.code;
+    onwardTicket.from = this.onwardFligt.from;
+    onwardTicket.to = this.onwardFligt.to;
+    onwardTicket.arrivalTime = this.onwardFligt.arrivalTime;
+    onwardTicket.depatureTime = this.onwardFligt.depatureTime;
+    onwardTicket.dateOfJourney = this.onwardFligt.dateOfDepature;
+    onwardTicket.bookedBy = this.userService.user.email;
+    onwardTicket.status = "Active";
+    onwardTicket.amountPaid = this.getTotalAmount();
+    onwardTicket.numberOfPassesngers = this.passengersCount;
+    onwardTicket.passesngers = this.passesngers;
+    onwardTicket.pnr = generatedPNROnward;
+    onwardTicket.id = generatedPNROnward;
+    this.tickerService.saveTickets(onwardTicket).subscribe((res) => {
     });
 
+    if (this.roundtripAvailable) {
+      generatedPNROnward = this.returnFligt.code + this.getRandomInt(1, 5000);
+
+      onwardTicket.flightCode = this.returnFligt.code;
+      onwardTicket.from = this.returnFligt.from;
+      onwardTicket.to = this.returnFligt.to;
+      onwardTicket.arrivalTime = this.returnFligt.arrivalTime;
+      onwardTicket.depatureTime = this.returnFligt.depatureTime;
+      onwardTicket.dateOfJourney = this.returnFligt.dateOfDepature;
+      onwardTicket.bookedBy = this.userService.user.email;
+      onwardTicket.status = "Active";
+      onwardTicket.amountPaid = this.getTotalAmount();
+      onwardTicket.numberOfPassesngers = this.passengersCount;
+      onwardTicket.passesngers = this.passesngers;
+      onwardTicket.pnr = generatedPNROnward;
+      onwardTicket.id = generatedPNROnward;
+      this.tickerService.saveTickets(onwardTicket).subscribe((res) => {
+      });
+    }
     this.router.navigate(["ticketHistory"]);
   }
 
+  getTotalAmount(): number {
+    return this.totalAmount;
+  }
 
   getRandomInt(min: number, max: number): number {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  setFlightDetails() {
+    this.onwardFligt = JSON.parse(sessionStorage.OnwardFlight);
+    if (sessionStorage.roundTrip) {
+      this.roundtripAvailable = sessionStorage.roundTrip;
+      this.returnFligt = JSON.parse(sessionStorage.ReturnFlight);
+    }
   }
 }
