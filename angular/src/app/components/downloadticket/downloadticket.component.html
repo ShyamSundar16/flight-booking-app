@@ -1,0 +1,85 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.6/jspdf.plugin.autotable.min.js"></script>
+
+
+<div class="content">
+    <div class="col-md-4 text-right">
+        <button class="btn btn-success btn-block" (click)="downloadTicketPDF()">Download Ticket</button>
+    </div>
+    <div class="container">
+        <div id="htmlData">
+        <table id="flights">
+            <tr>
+                <th>PNR</th>
+                <th>Flight Code</th>
+                <th>Passengers Count</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Date of Journey</th>
+                <th>Arrival Time</th>
+                <th>Depature Time</th>
+                <th>Amount Paid</th>
+                <th>Status</th>
+            </tr>
+            <tr>
+                <td>{{ticket.pnr}}</td>
+                <td>{{ticket.flightCode}}</td>
+                <td>{{ticket.numberOfPassesngers}}</td>
+                <td>{{ticket.from}}</td>
+                <td>{{ticket.to}}</td>
+                <td>{{ticket.dateOfJourney}}</td>
+                <td>{{ticket.arrivalTime}}</td>
+                <td>{{ticket.depatureTime}}</td>
+                <td>{{ticket.amountPaid}}</td>
+                <td>{{ticket.status}}</td>
+            </tr>
+            <br>
+            <h3>Passengers</h3>
+            <tr>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Age</th>
+                <th>Opted Food</th>
+                <th>Seat Number</th>
+                <th>Travel Class</th>
+            </tr>
+            <tr *ngFor="let passenger of passengers">
+                <td>{{passenger.name}}</td>
+                <td>{{passenger.gender}}</td>
+                <td>{{passenger.age}}</td>
+                <td>{{passenger.optedFood}}</td>
+                <td>{{passenger.seatNumber}}</td>
+                <td>{{passenger.travelClass}}</td>
+            </tr>
+
+        </table>
+
+        <h3>Health Screening</h3>
+
+            <h4>Domestic & International:</h4>
+            <ol>
+                <li>Thermal screening shall be done for all passengers</li>
+                <li>It is advisable for all passengers arriving in CJB to have carry a negative RT-PCR report not
+                    earlier than 72 hours. RT-PCR timeline starts from the swab collection time. The same is not
+                    applicable for passengers travelling from other cities within Tamil Nadu
+                </li>
+                <li>In case the passenger arrives without RT-PCR report, COVID testing shall be done free of cost at the
+                    airport and the passengers shall be released after sample is taken. Further action will be taken
+                    basis the test result.
+                </li>
+                <li> Customers who undergo test on arrival and are.</li>
+                <li>Found to be positive and symptomatic – will be taken to hospital isolation.</li>
+
+                <li>Found to be negative and asymptomatic – will have to undergo for self-monitoring for 14 days. </li>
+
+                <li>Found to be negative and symptomatic – will be taken to hospital isolation and decided based on
+                    Medical Opinion.
+                </li>
+            </ol>
+        </div>
+    </div>
+</div>

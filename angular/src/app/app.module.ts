@@ -18,6 +18,7 @@ import { TickethistoryComponent } from './components/tickethistory/tickethistory
 import { CouponService } from './services/coupon.service';
 import { TicketService } from './services/ticket.service';
 import { ScheduleService } from './services/schedule.service';
+import { DownloadticketComponent } from './components/downloadticket/downloadticket.component';
 
 const routes: Routes = [
   { path: "home", component: HomeComponent },
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: "contact", component: ContactComponent },
   { path: "bookTicket", component: BookticketComponent },
   { path: "ticketHistory", component: TickethistoryComponent },
+  { path: "downloadTicket", component: DownloadticketComponent },
   { path: "searchFlight", component: SearchFlightComponent, canActivate: [UserValidatorGuard] },
   { path: "admin", loadChildren: () => import("./modules/admin/admin.module").then(m => m.AdminModule) },
   { path: "**", component: LoginComponent }
@@ -41,7 +43,8 @@ const routes: Routes = [
     SearchFlightComponent,
     ContactComponent,
     BookticketComponent,
-    TickethistoryComponent
+    TickethistoryComponent,
+    DownloadticketComponent
   ],
   imports: [
     BrowserModule, RouterModule.forRoot(routes), ReactiveFormsModule,HttpClientModule

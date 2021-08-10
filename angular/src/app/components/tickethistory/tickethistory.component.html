@@ -2,6 +2,9 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
   integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.6/jspdf.plugin.autotable.min.js"></script>
+
 
 <div class="content">
   <div class="container">
@@ -23,7 +26,6 @@
         <td>{{ticket.pnr}}</td>
         <td>{{ticket.flightCode}}</td>
         <td>{{ticket.numberOfPassesngers}}</td>
-        <!-- <td>{{flight.passesngers}}</td> seperate Table-->
         <td>{{ticket.from}}</td>
         <td>{{ticket.to}}</td>
         <td>{{ticket.dateOfJourney}}</td>
@@ -32,37 +34,14 @@
         <td>{{ticket.amountPaid}}</td>
         <td>{{ticket.status}}</td>
 
-        <td><button type="button" class="editbtn" (click)="viewPassengers(ticket)"
-          ><i class="fa fa-fw fa-eye"></i>View</button></td>
+        <td><button type="button" class="editbtn" (click)="viewTicket(ticket)"><i
+              class="fa fa-fw fa-eye"></i>View</button></td>
         <td><button type="button" class="deletebtn" (click)="cancelTicket(ticket)"><i
-            class="fa fa-fw fa-trash"></i>Cancel</button></td>>
+              class="fa fa-fw fa-trash"></i>Cancel</button></td>
       </tr>
 
     </table>
   </div>
-<br><br>
-  <div class="container">
-    <form [formGroup]="viewPassengersForm" class="form-inline" *ngIf="showViewPassengersForm">
-      <table id="flights">
-        <tr>
-          <th>Name</th>
-          <th>Gender</th>
-          <th>Age</th>
-          <th>Opted Food</th>
-          <th>Seat Number</th>
-          <th>Travel Class</th>
-        </tr>
-        <tr *ngFor="let passenger of passengers">
-          <td>{{passenger.name}}</td>
-          <td>{{passenger.gender}}</td>
-          <td>{{passenger.age}}</td>
-          <td>{{passenger.optedFood}}</td>
-          <td>{{passenger.seatNumber}}</td>
-          <td>{{passenger.travelClass}}</td>
-          <td><button type="button" class="deletebtn" (click)="cancelviewPassengersForm()"><i
-            class="fa fa-fw fa-close"></i>Close</button></td>
-        </tr>
-      </table>
-    </form>
-  </div>
+
+  <br><br>
 </div>

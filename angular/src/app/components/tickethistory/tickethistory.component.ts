@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Passenger } from 'src/app/models/Passenger';
+import { Router } from '@angular/router';
 import { Ticket } from 'src/app/models/Ticket';
 import { TicketService } from 'src/app/services/ticket.service';
+
 
 @Component({
   selector: 'app-tickethistory',
@@ -12,19 +12,8 @@ import { TicketService } from 'src/app/services/ticket.service';
 export class TickethistoryComponent implements OnInit {
 
   tickets: Ticket[] = []
-  passengers: Passenger[] = []
-  viewPassengersForm: FormGroup;
-  showViewPassengersForm: boolean = false;
-  constructor(public ticketService: TicketService) {
-    this.viewPassengersForm = new FormGroup({
-      id: new FormControl(0, [Validators.required]),
-      name: new FormControl("", [Validators.required]),
-      gender: new FormControl("", [Validators.required]),
-      age: new FormControl(0, [Validators.required]),
-      optedFood: new FormControl("", [Validators.required]),
-      seatNumber: new FormControl("", [Validators.required]),
-      travelClass: new FormControl("", [Validators.required])
-    })
+  constructor(public ticketService: TicketService, public router:Router) {
+
     this.showTicketHistory()
   }
 
@@ -41,14 +30,10 @@ export class TickethistoryComponent implements OnInit {
       })
   }
 
-  viewPassengers(ticket: Ticket) {
-    this.passengers = ticket.passesngers;
-    this.showViewPassengersForm = true;
+  viewTicket(ticket: Ticket) {
+    this.ticketService.ticket=ticket;
+    this.router.navigate(["downloadTicket"]);
 
-  }
-
-  cancelviewPassengersForm() {
-    this.showViewPassengersForm = false;
   }
 
   cancelTicket(ticket: Ticket) {
@@ -71,8 +56,7 @@ export class TickethistoryComponent implements OnInit {
           });
 
       }
-    }
+    }  
   }
 
-  
 }

@@ -1,11 +1,11 @@
 {
   "tickets": [
     {
-      "id": "INDGO1012320",
-      "pnr": "INDGO1012320",
+      "id": "INDGO1011655",
+      "pnr": "INDGO1011655",
       "flightCode": "INDGO101",
       "bookedBy": "shyam@gmail.com",
-      "numberOfPassesngers": 1,
+      "numberOfPassesngers": 2,
       "passesngers": [
         {
           "name": "Shyam",
@@ -14,6 +14,14 @@
           "optedFood": "Veg",
           "travelClass": "Business",
           "age": "24"
+        },
+        {
+          "name": "Sundar",
+          "gender": "Male",
+          "seatNumber": "A3",
+          "optedFood": "Non-Veg",
+          "travelClass": "Economy",
+          "age": "16"
         }
       ],
       "from": "Chennai",
@@ -21,15 +29,15 @@
       "dateOfJourney": "14/08/2021",
       "arrivalTime": "13:30",
       "depatureTime": "14.10",
-      "amountPaid": 4750,
+      "amountPaid": 16300,
       "status": "Active"
     },
     {
-      "id": "AIRINDO1011549",
-      "pnr": "AIRINDO1011549",
+      "id": "AIRINDO1011602",
+      "pnr": "AIRINDO1011602",
       "flightCode": "AIRINDO101",
       "bookedBy": "shyam@gmail.com",
-      "numberOfPassesngers": 1,
+      "numberOfPassesngers": 2,
       "passesngers": [
         {
           "name": "Shyam",
@@ -38,6 +46,14 @@
           "optedFood": "Veg",
           "travelClass": "Business",
           "age": "24"
+        },
+        {
+          "name": "Sundar",
+          "gender": "Male",
+          "seatNumber": "A3",
+          "optedFood": "Non-Veg",
+          "travelClass": "Economy",
+          "age": "16"
         }
       ],
       "from": "Mumbai",
@@ -45,7 +61,7 @@
       "dateOfJourney": "16/08/2021",
       "arrivalTime": "07:10",
       "depatureTime": "07:40",
-      "amountPaid": 4750,
+      "amountPaid": 16300,
       "status": "Active"
     }
   ],
