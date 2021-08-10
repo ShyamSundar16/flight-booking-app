@@ -117,9 +117,8 @@
     </tr>
 
   </table>
-<br>
-
-<button type="button" class="editbtn" (click)="bookFlight()" *ngIf="viewSearchResults()"><i
-  class="fa fa-fw fa-check"></i>Proceed checkout</button>
+  <br>
+  <button type="button" class="editbtn" (click)="bookFlight()" *ngIf="viewSearchResults() && checkBeforeProceed()"><i
+      class="fa fa-fw fa-check"></i>Proceed checkout</button>
 
 </div>

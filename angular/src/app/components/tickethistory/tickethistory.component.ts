@@ -25,7 +25,7 @@ export class TickethistoryComponent implements OnInit {
       .subscribe((res: any) => {
         this.tickets = res;
         this.tickets = this.tickets
-          .filter(ticket => ticket.bookedBy == sessionStorage.getItem("userid")
+          .filter(ticket => ticket.bookedBy == sessionStorage.userid
           )
       })
   }
@@ -54,7 +54,6 @@ export class TickethistoryComponent implements OnInit {
           .subscribe((res: any) => {
             this.showTicketHistory()
           });
-
       }
     }  
   }

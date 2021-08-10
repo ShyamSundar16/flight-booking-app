@@ -9,8 +9,6 @@
             </p>
             <input type="number" placeholder="Phone number" name="phone" formControlName="phone" required>
             <input type="password" placeholder="Password" name="password" formControlName="password" required>
-            <!-- <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms & Privacy</a>.</p> -->
-
             <div class="clearfix">
                 <button type="button" class="cancelbtn">Cancel</button>
                 <button type="submit" class="signupbtn">Sign Up</button>
@@ -33,8 +31,7 @@
                     <span *ngIf = "!!loginForm.controls.email.errors.email" class="error">Invalid email.</span>
                 </p>
                 <input type="password" placeholder="Password" name="password" formControlName="password" required>
-                <!-- <a href="#" style="color:dodgerblue" class="btn">Forgot password?</a> -->
-                <!-- <input type="submit" [disabled]="loginForm.invalid" class="signupbtn" value="Login"> -->
+
                 <button [disabled]="loginForm.invalid" type="submit"  class="signupbtn">Login</button>
 
             </div>

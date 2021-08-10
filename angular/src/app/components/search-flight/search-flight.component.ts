@@ -34,6 +34,9 @@ export class SearchFlightComponent implements OnInit {
   showReturnSearchTable: boolean = false;
   selectedReturnFlight: Flight = new Flight;
 
+  addedReturnFlight:boolean=false;
+  addedOnwardFlight:boolean=false;
+
   constructor(public userService: UserService, public flightService: FlightService
     , public scheduleService: ScheduleService, private router: Router) {
   }
@@ -130,7 +133,7 @@ export class SearchFlightComponent implements OnInit {
   }
 
   bookFlight() {
-    sessionStorage.OnwardFlight = JSON.stringify( this.selectedOnwordFlight);
+    sessionStorage.OnwardFlight = JSON.stringify(this.selectedOnwordFlight);
     if (this.roundTrip) {
       sessionStorage.roundTrip = this.roundTrip;
       sessionStorage.ReturnFlight = JSON.stringify(this.selectedReturnFlight);
@@ -157,12 +160,22 @@ export class SearchFlightComponent implements OnInit {
   }
 
   addOnwardFlight(flight: Flight) {
+    this.addedOnwardFlight=true;
+
     this.selectedOnwordFlight = flight;
   }
 
   addReturnFlight(flight: Flight) {
+    this.addedReturnFlight=true;
     this.selectedReturnFlight = flight;
   }
-
-
+  checkBeforeProceed():boolean{
+    if(this.roundTrip && this.addedReturnFlight){
+      return true;
+    }
+    if(!this.roundTrip && this.addedOnwardFlight){
+      return true;
+    }
+    return false;
+  }
 }

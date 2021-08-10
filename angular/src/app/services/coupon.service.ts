@@ -2,7 +2,6 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http/";
 import { Coupon } from "../models/Coupon";
 
-// @Injectable({ "providedIn": "root", })
 @Injectable()
 export class CouponService {
     private url: string = "http://localhost:3000/coupon";

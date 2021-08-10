@@ -22,6 +22,7 @@ export class DownloadticketComponent implements OnInit {
   }
 
   public downloadTicketPDF():void {
+    
     let DATA:any = document.getElementById('htmlData');
       
     html2canvas(DATA).then(canvas => {

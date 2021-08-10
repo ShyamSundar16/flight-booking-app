@@ -195,6 +195,7 @@ export class BookticketComponent implements OnInit {
       this.tickerService.saveTickets(onwardTicket).subscribe((res) => {
       });
     }
+    
     this.router.navigate(["ticketHistory"]);
   }
 

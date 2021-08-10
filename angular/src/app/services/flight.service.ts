@@ -2,7 +2,6 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http/";
 import { Flight } from "../models/Flight";
 
-// @Injectable({ "providedIn": "root", })
 @Injectable()
 export class FlightService {
     private url: string = "http://localhost:3000/flights";
