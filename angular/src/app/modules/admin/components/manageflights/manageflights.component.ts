@@ -24,6 +24,7 @@ export class ManageflightsComponent implements OnInit {
       economyClassAvailable: new FormControl("", [Validators.required]),
       businessClassPrice: new FormControl("", [Validators.required]),
       economyClassPrice: new FormControl("", [Validators.required]),
+      instrument: new FormControl("", [Validators.required]),
       runson: new FormControl("", [Validators.required]),
       from: new FormControl("", [Validators.required]),
       to: new FormControl("", [Validators.required]),
@@ -42,7 +43,8 @@ export class ManageflightsComponent implements OnInit {
       from: new FormControl("", [Validators.required]),
       to: new FormControl("", [Validators.required]),
       contact: new FormControl("", [Validators.required]),
-      status: new FormControl("", [Validators.required])
+      status: new FormControl("", [Validators.required]),
+      instrument: new FormControl("", [Validators.required])
     })
     this.findAllFlights();
   }

@@ -57,8 +57,10 @@
       <th>Id</th>
       <th>Code</th>
       <th>Airlines</th>
-      <th>BusinessClass Price</th>
-      <th>EconomyClass Price</th>
+      <th>B.Price</th>
+      <th>Available B.Tickets</th>
+      <th>E.Price</th>
+      <th>Available E.Tickets</th>
       <th>From</th>
       <th>To</th>
       <th>Arrival</th>
@@ -70,7 +72,9 @@
       <td>{{flight.code}}</td>
       <td>{{flight.airlines}}</td>
       <td>{{flight.businessClassPrice}}</td>
+      <td>{{flight.availabeBusinessTickets}}</td>
       <td>{{flight.economyClassPrice}}</td>
+      <td>{{flight.availabeEconomyTickets}}</td>
       <td>{{flight.from}}</td>
       <td>{{flight.to}}</td>
       <td>{{flight.arrivalTime}}</td>
@@ -80,8 +84,6 @@
       <td>
         <label class="radio-inline"><input type="radio" name="oneway" (click)="addOnwardFlight(flight)">Book</label>
       </td>
-      <!-- <td><button type="button" class="editbtn" (click)="bookFlight(flight)"><i
-            class="fa fa-fw fa-edit"></i>Book</button></td> -->
     </tr>
   </table>
   <br>
@@ -92,8 +94,10 @@
       <th>Id</th>
       <th>Code</th>
       <th>Airlines</th>
-      <th>BusinessClass Price</th>
-      <th>EconomyClass Price</th>
+      <th>B.Price</th>
+      <th>Available B.Tickets</th>
+      <th>E.Price</th>
+      <th>Available E.Tickets</th>
       <th>From</th>
       <th>To</th>
       <th>Arrival</th>
@@ -105,7 +109,9 @@
       <td>{{flight.code}}</td>
       <td>{{flight.airlines}}</td>
       <td>{{flight.businessClassPrice}}</td>
+      <td>{{flight.availabeBusinessTickets}}</td>
       <td>{{flight.economyClassPrice}}</td>
+      <td>{{flight.availabeEconomyTickets}}</td>
       <td>{{flight.from}}</td>
       <td>{{flight.to}}</td>
       <td>{{flight.arrivalTime}}</td>

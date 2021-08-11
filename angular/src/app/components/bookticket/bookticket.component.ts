@@ -5,9 +5,11 @@ import { Router } from '@angular/router';
 import { Coupon } from 'src/app/models/Coupon';
 import { Flight } from 'src/app/models/Flight';
 import { Passenger } from 'src/app/models/Passenger';
+import { Schedule } from 'src/app/models/Schedule';
 import { Ticket } from 'src/app/models/Ticket';
 import { CouponService } from 'src/app/services/coupon.service';
 import { FlightService } from 'src/app/services/flight.service';
+import { ScheduleService } from 'src/app/services/schedule.service';
 import { TicketService } from 'src/app/services/ticket.service';
 import { UserService } from 'src/app/services/user.service';
 import { SearchFlightComponent } from '../search-flight/search-flight.component';
@@ -38,9 +40,17 @@ export class BookticketComponent implements OnInit {
   returnFligt: Flight = new Flight;
   roundtripAvailable: boolean = false;
 
+  onwardBusinessPassengerCount: number = 0;
+  returnBusinessPassengerCount: number = 0;
+
+  onwardEconmoyPassengerCount: number = 0;
+  returEconmoyPassengerCount: number = 0;
+
+  // scheduleList: Schedule[] = [];
+
   constructor(public flightService: FlightService, public couponService: CouponService,
     public searchFlightComponent: SearchFlightComponent, public userService: UserService,
-    public tickerService: TicketService, public router: Router) {
+    public tickerService: TicketService, public router: Router, public scheduleService: ScheduleService) {
     this.addPassengerForm = new FormGroup({
       name: new FormControl("", [Validators.required]),
       gender: new FormControl("", [Validators.required]),
@@ -107,35 +117,44 @@ export class BookticketComponent implements OnInit {
     return this.showPay;
   }
   addPassengers() {
-    this.passengersCount++;
-    this.passesngers.push(this.addPassengerForm.value);
-    this.addPassengerForm.reset();
-    this.showAddPassengerForm = false;
-    
-    if (this.selectedTravelClass == "Business") {
-      let price: number = this.onwardFligt.businessClassPrice;
-      this.totalAmount = +this.totalAmount + +price;
-    }
+    if (this.checkIfTicketsAvailable()) {
+      this.passengersCount++;
+      this.passesngers.push(this.addPassengerForm.value);
+      this.addPassengerForm.reset();
+      this.showAddPassengerForm = false;
 
-    if (this.selectedTravelClass == "Economy") {
-      let price: number = this.onwardFligt.economyClassPrice;
-      this.totalAmount = +this.totalAmount + +price;
-    }
-
-
-    if (this.roundtripAvailable) {
       if (this.selectedTravelClass == "Business") {
-        let price: number = this.returnFligt.businessClassPrice;
-        this.totalAmount = +this.totalAmount + +price;
-      }
-      if (this.selectedTravelClass == "Economy") {
-        let price: number = this.returnFligt.economyClassPrice;
+        this.onwardBusinessPassengerCount++;
+        let price: number = this.onwardFligt.businessClassPrice;
         this.totalAmount = +this.totalAmount + +price;
       }
 
+      if (this.selectedTravelClass == "Economy") {
+        this.onwardEconmoyPassengerCount++;
+        let price: number = this.onwardFligt.economyClassPrice;
+        this.totalAmount = +this.totalAmount + +price;
+      }
+
+
+      if (this.roundtripAvailable) {
+        if (this.selectedTravelClass == "Business") {
+          this.returnBusinessPassengerCount++;
+          let price: number = this.returnFligt.businessClassPrice;
+          this.totalAmount = +this.totalAmount + +price;
+        }
+        if (this.selectedTravelClass == "Economy") {
+          this.returEconmoyPassengerCount++;
+          let price: number = this.returnFligt.economyClassPrice;
+          this.totalAmount = +this.totalAmount + +price;
+        }
+
+      }
+      this.showPay = true;
+      this.getAvailableCoupons();
     }
-    this.showPay = true;
-    this.getAvailableCoupons();
+    else {
+      alert("Ticket not available");
+    }
   }
 
   getAvailableCoupons() {
@@ -155,6 +174,14 @@ export class BookticketComponent implements OnInit {
   }
 
   payAndBookTicket() {
+
+
+    let keyConstructonward: string[] = this.onwardFligt.dateOfDepature.split("/");
+    let onwardScheduleid = this.onwardFligt.code + "_" + keyConstructonward[0] + "_" + keyConstructonward[1] + "_" + keyConstructonward[2] + "_" + this.onwardFligt.arrivalTime;
+
+    let keyConstructreturn = this.returnFligt.dateOfDepature.split("/");
+    let returnScheduleid = this.returnFligt.code + "_" + keyConstructreturn[0] + "_" + keyConstructreturn[1] + "_" + keyConstructreturn[2] + "_" + this.returnFligt.arrivalTime;
+
     let generatedPNROnward: string = "";
 
     generatedPNROnward = this.onwardFligt.code + this.getRandomInt(1, 5000);
@@ -176,6 +203,7 @@ export class BookticketComponent implements OnInit {
     this.tickerService.saveTickets(onwardTicket).subscribe((res) => {
     });
 
+
     if (this.roundtripAvailable) {
       generatedPNROnward = this.returnFligt.code + this.getRandomInt(1, 5000);
 
@@ -194,8 +222,44 @@ export class BookticketComponent implements OnInit {
       onwardTicket.id = generatedPNROnward;
       this.tickerService.saveTickets(onwardTicket).subscribe((res) => {
       });
+
+
+      this.scheduleService.getScheduleInfo()
+        .subscribe((res: any) => {
+          let scheduleList: Schedule[] = res;
+          scheduleList.forEach(schedule => {
+
+            let onwardSchedule: Schedule = new Schedule
+            let returnSchedule: Schedule = new Schedule
+            if (schedule.id == onwardScheduleid) {
+              onwardSchedule = schedule
+              if (onwardSchedule != null) {
+                onwardSchedule.availabeBusinessTickets = onwardSchedule.availabeBusinessTickets - this.onwardBusinessPassengerCount;
+                onwardSchedule.availabeEconomyTickets = onwardSchedule.availabeEconomyTickets - this.onwardEconmoyPassengerCount;
+                this.scheduleService.updateSchedule(onwardSchedule).subscribe((res: any) => {
+                })
+              }
+            }
+            if (schedule.id == returnScheduleid) {
+              returnSchedule = schedule
+              if (this.roundtripAvailable) {
+                if (returnSchedule != null) {
+                  
+                  returnSchedule.availabeBusinessTickets = returnSchedule.availabeBusinessTickets - this.returnBusinessPassengerCount;
+                  returnSchedule.availabeEconomyTickets = returnSchedule.availabeEconomyTickets - this.returEconmoyPassengerCount;
+                  this.scheduleService.updateSchedule(returnSchedule).subscribe((res: any) => {
+
+                  })
+                }
+              }
+            }
+          })
+        })
+
     }
-    
+
+
+
     this.router.navigate(["ticketHistory"]);
   }
 
@@ -215,5 +279,35 @@ export class BookticketComponent implements OnInit {
       this.roundtripAvailable = sessionStorage.roundTrip;
       this.returnFligt = JSON.parse(sessionStorage.ReturnFlight);
     }
+  }
+
+  checkIfTicketsAvailable(): boolean {
+    if (this.selectedTravelClass == "Business") {
+
+      if (this.onwardBusinessPassengerCount >= this.onwardFligt.availabeBusinessTickets) {
+        return false;
+      }
+    }
+
+    if (this.selectedTravelClass == "Economy") {
+      if (this.onwardEconmoyPassengerCount >= this.onwardFligt.availabeEconomyTickets) {
+        return false;
+      }
+    }
+
+    if (this.roundtripAvailable) {
+      if (this.selectedTravelClass == "Business") {
+        if (this.returnBusinessPassengerCount >= this.returnFligt.availabeBusinessTickets) {
+          return false;
+        }
+      }
+      if (this.selectedTravelClass == "Economy") {
+        if (this.returEconmoyPassengerCount >= this.returnFligt.availabeEconomyTickets) {
+          return false;
+        }
+      }
+
+    }
+    return true;
   }
 }

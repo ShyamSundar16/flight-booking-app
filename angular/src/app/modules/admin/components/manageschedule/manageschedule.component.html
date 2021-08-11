@@ -13,6 +13,9 @@
         <input type="text" placeholder="id" name="id" formControlName="id" required>
         <input type="text" placeholder="Code" name="Code" formControlName="code" required>
         <input type="text" placeholder="Scheduled Date (dd/mm/yyy)" name="ScheduledDate" formControlName="scheduledDate" required>
+        <input type="number" placeholder="AvailabeBusinessTickets" name="AvailabeBusinessTickets" formControlName="availabeBusinessTickets"  required>
+        <input type="number" placeholder="AvailabeEconomyTickets" name="AvailabeEconomyTickets" formControlName="availabeEconomyTickets" required>
+
         <input type="text" placeholder="Arrival Time (HH:MM)" name="ArrivalTime" formControlName="arrivalTime" required>
         <input type="text" placeholder="DepatureTime (HH:MM)" name="DepatureTime" formControlName="depatureTime" required>
         <input type="text" placeholder="Status" name="Status" formControlName="status" required>
@@ -30,6 +33,8 @@
         <input type="text" placeholder="Code" name="Code" formControlName="code" required>
         
         <input type="text" placeholder="Scheduled Date (dd/mm/yyy)" name="ScheduledDate" formControlName="scheduledDate" required>
+        <input type="number" placeholder="AvailabeBusinessTickets" name="AvailabeBusinessTickets" formControlName="availabeBusinessTickets" required>
+        <input type="number" placeholder="AvailabeEconomyTickets" name="AvailabeEconomyTickets" formControlName="availabeEconomyTickets" required>
         <input type="text" placeholder="Arrival Time (HH:MM)" name="ArrivalTime" formControlName="arrivalTime" required>
         <input type="text" placeholder="DepatureTime (HH:MM)" name="DepatureTime" formControlName="depatureTime" required>
         <input type="text" placeholder="Status" name="Status" formControlName="status" required>
@@ -41,17 +46,20 @@
 
   <table id="flights">
     <tr>
-      <th>Id</th>
       <th>Code</th>
       <th>Scheduled Date</th>
+      <th>B.Tickets</th>
+      <th>E.Tickets</th>
       <th>Arrival Time</th>
       <th>Depature Time</th>
       <th>Status</th>
     </tr>
     
     <tr *ngFor="let schedule of schedules">
-      <td>{{schedule.id}}</td>
       <td><a [routerLink]="['/', 'admin', 'manageFlights']" routerLinkActive="active" >{{schedule.code}}</a></td>
+      <td>{{schedule.scheduledDate}}</td>
+      <td>{{schedule.availabeBusinessTickets}}</td>
+      <td>{{schedule.availabeEconomyTickets}}</td>
       <td>{{schedule.scheduledDate}}</td>
       <td>{{schedule.arrivalTime}}</td>
       <td>{{schedule.depatureTime}}</td>

@@ -23,7 +23,9 @@ export class ManagescheduleComponent implements OnInit {
       scheduledDate: new FormControl("", [Validators.required]),
       arrivalTime: new FormControl("", [Validators.required]),
       depatureTime: new FormControl("", [Validators.required]),
-      status: new FormControl("", [Validators.required])
+      status: new FormControl("", [Validators.required]),
+      availabeEconomyTickets: new FormControl(0, [Validators.required]),
+      availabeBusinessTickets: new FormControl(0, [Validators.required]),
     })
 
     this.updateScheduleForm = new FormGroup({
@@ -32,7 +34,9 @@ export class ManagescheduleComponent implements OnInit {
       scheduledDate: new FormControl("", [Validators.required]),
       arrivalTime: new FormControl("", [Validators.required]),
       depatureTime: new FormControl("", [Validators.required]),
-      status: new FormControl("", [Validators.required])
+      status: new FormControl("", [Validators.required]),
+      availabeEconomyTickets: new FormControl(0, [Validators.required]),
+      availabeBusinessTickets: new FormControl(0, [Validators.required]),
     })
 
     this.getSchedule();
@@ -83,7 +87,7 @@ export class ManagescheduleComponent implements OnInit {
       });
   }
 
-  deleteSchdeuleById(id: number) {
+  deleteSchdeuleById(id: string) {
     this.scheduleService.deleteSchedule(id)
       .subscribe((res: any) => {
         this.getSchedule()

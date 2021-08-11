@@ -11,8 +11,11 @@ export class FlightService {
         this.f.id = newF.id;
         this.f.code = newF.code;
         this.f.airlines = newF.airlines;
+        this.f.instrument = newF.instrument;
         this.f.businessClassAvailable = newF.businessClassAvailable;
+        this.f.availabeBusinessTickets = newF.availabeBusinessTickets;
         this.f.economyClassAvailable = newF.economyClassAvailable;
+        this.f.availabeEconomyTickets = newF.availabeEconomyTickets;
         this.f.businessClassPrice = newF.businessClassPrice;
         this.f.economyClassPrice = newF.economyClassPrice;
         this.f.runson = newF.runson;

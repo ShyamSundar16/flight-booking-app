@@ -90,6 +90,8 @@ export class SearchFlightComponent implements OnInit {
                   if (flight.code == schedule.code) {
                     flight.arrivalTime = schedule.arrivalTime;
                     flight.depatureTime = schedule.depatureTime;
+                    flight.availabeBusinessTickets = schedule.availabeBusinessTickets;
+                    flight.availabeEconomyTickets = schedule.availabeEconomyTickets;
                     flight.status = schedule.status;
                     flight.dateOfDepature = schedule.scheduledDate;
                     this.flightsBasedOnSchedule.push(flight);
@@ -119,6 +121,8 @@ export class SearchFlightComponent implements OnInit {
                       flight.arrivalTime = schedule.arrivalTime;
                       flight.depatureTime = schedule.depatureTime;
                       flight.status = schedule.status;
+                      flight.availabeBusinessTickets = schedule.availabeBusinessTickets;
+                      flight.availabeEconomyTickets = schedule.availabeEconomyTickets;
                       flight.dateOfDepature = schedule.scheduledDate;
                       this.returnFlightsBasedOnSchedule.push(flight);
 

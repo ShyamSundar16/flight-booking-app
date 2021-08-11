@@ -14,6 +14,9 @@ export class ScheduleService {
         this.s.arrivalTime = newS.arrivalTime;
         this.s.depatureTime = newS.depatureTime;
         this.s.status = newS.status;
+        this.s.availabeBusinessTickets = newS.availabeBusinessTickets;
+        this.s.availabeEconomyTickets = newS.availabeEconomyTickets;
+
 
     }
 
@@ -27,10 +30,12 @@ export class ScheduleService {
     }
 
     saveSchedule(schedule: Schedule) {
+        let keyConstruct:string[]=schedule.scheduledDate.split("/");
+        schedule.id =schedule.code+"_"+keyConstruct[0]+"_"+keyConstruct[1]+"_"+[2]+"_"+schedule.arrivalTime;
         return this.httpClient.post(this.url, schedule);
     }
 
-    deleteSchedule(id: number) {
+    deleteSchedule(id: string) {
         return this.httpClient.delete(this.url + "/" + id);
     }
     updateSchedule(schedule: Schedule) {
