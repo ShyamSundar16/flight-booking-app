@@ -115,19 +115,19 @@
   ],
   "flights": [
     {
+      "id": 1,
       "code": "INDGO101",
       "airlines": "Indigo",
       "businessClassAvailable": true,
       "economyClassAvailable": true,
       "businessClassPrice": "5600",
       "economyClassPrice": "3500",
-      "instrument": "AE320",
-      "runson": "Monday,Wednesday,Friday",
+      "runson": "Monday,Wednesday",
       "from": "Chennai",
       "to": "Mumbai",
       "contact": "support@indigo.com",
       "status": "Active",
-      "id": 1
+      "instrument": "AE320"
     },
     {
       "code": "AIRINDO101",
