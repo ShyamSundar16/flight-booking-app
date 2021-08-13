@@ -191,7 +191,7 @@ export class BookticketComponent implements OnInit {
     onwardTicket.from = this.onwardFligt.from;
     onwardTicket.to = this.onwardFligt.to;
     onwardTicket.arrivalTime = this.onwardFligt.arrivalTime;
-    onwardTicket.depatureTime = this.onwardFligt.depatureTime;
+    onwardTicket.departureTime = this.onwardFligt.departureTime;
     onwardTicket.dateOfJourney = this.onwardFligt.dateOfDepature;
     onwardTicket.bookedBy = this.userService.user.email;
     onwardTicket.status = "Active";
@@ -211,7 +211,7 @@ export class BookticketComponent implements OnInit {
       onwardTicket.from = this.returnFligt.from;
       onwardTicket.to = this.returnFligt.to;
       onwardTicket.arrivalTime = this.returnFligt.arrivalTime;
-      onwardTicket.depatureTime = this.returnFligt.depatureTime;
+      onwardTicket.departureTime = this.returnFligt.departureTime;
       onwardTicket.dateOfJourney = this.returnFligt.dateOfDepature;
       onwardTicket.bookedBy = this.userService.user.email;
       onwardTicket.status = "Active";
@@ -234,8 +234,8 @@ export class BookticketComponent implements OnInit {
             if (schedule.id == onwardScheduleid) {
               onwardSchedule = schedule
               if (onwardSchedule != null) {
-                onwardSchedule.availabeBusinessTickets = onwardSchedule.availabeBusinessTickets - this.onwardBusinessPassengerCount;
-                onwardSchedule.availabeEconomyTickets = onwardSchedule.availabeEconomyTickets - this.onwardEconmoyPassengerCount;
+                onwardSchedule.availableBusinessTickets = onwardSchedule.availableBusinessTickets - this.onwardBusinessPassengerCount;
+                onwardSchedule.availableEconomyTickets = onwardSchedule.availableEconomyTickets - this.onwardEconmoyPassengerCount;
                 this.scheduleService.updateSchedule(onwardSchedule).subscribe((res: any) => {
                 })
               }
@@ -245,8 +245,8 @@ export class BookticketComponent implements OnInit {
               if (this.roundtripAvailable) {
                 if (returnSchedule != null) {
                   
-                  returnSchedule.availabeBusinessTickets = returnSchedule.availabeBusinessTickets - this.returnBusinessPassengerCount;
-                  returnSchedule.availabeEconomyTickets = returnSchedule.availabeEconomyTickets - this.returEconmoyPassengerCount;
+                  returnSchedule.availableBusinessTickets = returnSchedule.availableBusinessTickets - this.returnBusinessPassengerCount;
+                  returnSchedule.availableEconomyTickets = returnSchedule.availableEconomyTickets - this.returEconmoyPassengerCount;
                   this.scheduleService.updateSchedule(returnSchedule).subscribe((res: any) => {
 
                   })
@@ -284,25 +284,25 @@ export class BookticketComponent implements OnInit {
   checkIfTicketsAvailable(): boolean {
     if (this.selectedTravelClass == "Business") {
 
-      if (this.onwardBusinessPassengerCount >= this.onwardFligt.availabeBusinessTickets) {
+      if (this.onwardBusinessPassengerCount >= this.onwardFligt.availableBusinessTickets) {
         return false;
       }
     }
 
     if (this.selectedTravelClass == "Economy") {
-      if (this.onwardEconmoyPassengerCount >= this.onwardFligt.availabeEconomyTickets) {
+      if (this.onwardEconmoyPassengerCount >= this.onwardFligt.availableEconomyTickets) {
         return false;
       }
     }
 
     if (this.roundtripAvailable) {
       if (this.selectedTravelClass == "Business") {
-        if (this.returnBusinessPassengerCount >= this.returnFligt.availabeBusinessTickets) {
+        if (this.returnBusinessPassengerCount >= this.returnFligt.availableBusinessTickets) {
           return false;
         }
       }
       if (this.selectedTravelClass == "Economy") {
-        if (this.returEconmoyPassengerCount >= this.returnFligt.availabeEconomyTickets) {
+        if (this.returEconmoyPassengerCount >= this.returnFligt.availableEconomyTickets) {
           return false;
         }
       }

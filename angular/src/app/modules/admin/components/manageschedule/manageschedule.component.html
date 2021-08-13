@@ -13,11 +13,11 @@
         <input type="text" placeholder="id" name="id" formControlName="id" required>
         <input type="text" placeholder="Code" name="Code" formControlName="code" required>
         <input type="text" placeholder="Scheduled Date (dd/mm/yyy)" name="ScheduledDate" formControlName="scheduledDate" required>
-        <input type="number" placeholder="AvailabeBusinessTickets" name="AvailabeBusinessTickets" formControlName="availabeBusinessTickets"  required>
-        <input type="number" placeholder="AvailabeEconomyTickets" name="AvailabeEconomyTickets" formControlName="availabeEconomyTickets" required>
+        <input type="number" placeholder="availableBusinessTickets" name="availableBusinessTickets" formControlName="availableBusinessTickets"  required>
+        <input type="number" placeholder="availableEconomyTickets" name="availableEconomyTickets" formControlName="availableEconomyTickets" required>
 
         <input type="text" placeholder="Arrival Time (HH:MM)" name="ArrivalTime" formControlName="arrivalTime" required>
-        <input type="text" placeholder="DepatureTime (HH:MM)" name="DepatureTime" formControlName="depatureTime" required>
+        <input type="text" placeholder="departureTime (HH:MM)" name="departureTime" formControlName="departureTime" required>
         <input type="text" placeholder="Status" name="Status" formControlName="status" required>
 
         <button type="submit"  style="width: 50%;" class="editbtn"><i class="fa fa-fw fa-check"></i>Update</button><button type="submit"  style="width: 50%;" (click)="cancelUpdateForm()" class="deletebtn"><i class="fa fa-fw fa-remove"></i>Cancel</button>
@@ -33,10 +33,10 @@
         <input type="text" placeholder="Code" name="Code" formControlName="code" required>
         
         <input type="text" placeholder="Scheduled Date (dd/mm/yyy)" name="ScheduledDate" formControlName="scheduledDate" required>
-        <input type="number" placeholder="AvailabeBusinessTickets" name="AvailabeBusinessTickets" formControlName="availabeBusinessTickets" required>
-        <input type="number" placeholder="AvailabeEconomyTickets" name="AvailabeEconomyTickets" formControlName="availabeEconomyTickets" required>
+        <input type="number" placeholder="availableBusinessTickets" name="availableBusinessTickets" formControlName="availableBusinessTickets" required>
+        <input type="number" placeholder="availableEconomyTickets" name="availableEconomyTickets" formControlName="availableEconomyTickets" required>
         <input type="text" placeholder="Arrival Time (HH:MM)" name="ArrivalTime" formControlName="arrivalTime" required>
-        <input type="text" placeholder="DepatureTime (HH:MM)" name="DepatureTime" formControlName="depatureTime" required>
+        <input type="text" placeholder="departureTime (HH:MM)" name="departureTime" formControlName="departureTime" required>
         <input type="text" placeholder="Status" name="Status" formControlName="status" required>
 
         <button type="submit"  style="width: 50%;" class="editbtn"><i class="fa fa-fw fa-check"></i>Update</button><button type="submit"  style="width: 50%;" (click)="cancelAddForm()" class="deletebtn"><i class="fa fa-fw fa-remove"></i>Cancel</button>
@@ -58,11 +58,11 @@
     <tr *ngFor="let schedule of schedules">
       <td><a [routerLink]="['/', 'admin', 'manageFlights']" routerLinkActive="active" >{{schedule.code}}</a></td>
       <td>{{schedule.scheduledDate}}</td>
-      <td>{{schedule.availabeBusinessTickets}}</td>
-      <td>{{schedule.availabeEconomyTickets}}</td>
+      <td>{{schedule.availableBusinessTickets}}</td>
+      <td>{{schedule.availableEconomyTickets}}</td>
       <td>{{schedule.scheduledDate}}</td>
       <td>{{schedule.arrivalTime}}</td>
-      <td>{{schedule.depatureTime}}</td>
+      <td>{{schedule.departureTime}}</td>
       <td>{{schedule.status}}</td>
 
       <td><button type="button" class="deletebtn" (click)="deleteSchdeuleById(schedule.id)"><i

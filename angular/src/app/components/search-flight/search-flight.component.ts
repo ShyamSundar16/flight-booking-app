@@ -89,9 +89,9 @@ export class SearchFlightComponent implements OnInit {
                 this.filteredFlights.forEach(flight => {
                   if (flight.code == schedule.code) {
                     flight.arrivalTime = schedule.arrivalTime;
-                    flight.depatureTime = schedule.depatureTime;
-                    flight.availabeBusinessTickets = schedule.availabeBusinessTickets;
-                    flight.availabeEconomyTickets = schedule.availabeEconomyTickets;
+                    flight.departureTime = schedule.departureTime;
+                    flight.availableBusinessTickets = schedule.availableBusinessTickets;
+                    flight.availableEconomyTickets = schedule.availableEconomyTickets;
                     flight.status = schedule.status;
                     flight.dateOfDepature = schedule.scheduledDate;
                     this.flightsBasedOnSchedule.push(flight);
@@ -119,10 +119,10 @@ export class SearchFlightComponent implements OnInit {
                   this.filteredReturnFlights.forEach(flight => {
                     if (flight.code == schedule.code) {
                       flight.arrivalTime = schedule.arrivalTime;
-                      flight.depatureTime = schedule.depatureTime;
+                      flight.departureTime = schedule.departureTime;
                       flight.status = schedule.status;
-                      flight.availabeBusinessTickets = schedule.availabeBusinessTickets;
-                      flight.availabeEconomyTickets = schedule.availabeEconomyTickets;
+                      flight.availableBusinessTickets = schedule.availableBusinessTickets;
+                      flight.availableEconomyTickets = schedule.availableEconomyTickets;
                       flight.dateOfDepature = schedule.scheduledDate;
                       this.returnFlightsBasedOnSchedule.push(flight);
 

@@ -4,7 +4,7 @@ import { Flight } from "../models/Flight";
 
 @Injectable()
 export class FlightService {
-    private url: string = "http://localhost:3000/flights";
+    private url: string = "http://localhost:8989/api/admin/flights";
     private f = new Flight();
 
     public set flight(newF: Flight) {
@@ -13,9 +13,9 @@ export class FlightService {
         this.f.airlines = newF.airlines;
         this.f.instrument = newF.instrument;
         this.f.businessClassAvailable = newF.businessClassAvailable;
-        this.f.availabeBusinessTickets = newF.availabeBusinessTickets;
+        this.f.availableBusinessTickets = newF.availableBusinessTickets;
         this.f.economyClassAvailable = newF.economyClassAvailable;
-        this.f.availabeEconomyTickets = newF.availabeEconomyTickets;
+        this.f.availableEconomyTickets = newF.availableEconomyTickets;
         this.f.businessClassPrice = newF.businessClassPrice;
         this.f.economyClassPrice = newF.economyClassPrice;
         this.f.runson = newF.runson;
@@ -24,7 +24,7 @@ export class FlightService {
         this.f.contact = newF.contact;
         this.f.status = newF.status;
         this.f.arrivalTime = newF.arrivalTime;
-        this.f.depatureTime = newF.depatureTime;
+        this.f.departureTime = newF.departureTime;
         this.f.dateOfDepature = newF.dateOfDepature;
 
     }

@@ -21,35 +21,35 @@ public class UserController {
 
     @GetMapping("")
     @Cacheable(value = "users")
-    public List<User> getAllUsers(){
+    public List<User> getAllUsers() {
         System.out.println("Finding users from db..");
         return userService.getAllUsers();
     }
 
     @PostMapping("/register")
     public String addUser(@RequestBody User user) throws Exception {
-                userService.save(user);
-                return "redirect:../";
+        userService.save(user);
+        return "redirect:../";
     }
 
 
     @GetMapping("/{id}")
-    @Cacheable(key="#id", value = "books")
-    public User getBookById(@PathVariable String id){
-        System.out.println("Find user with Id : "+id);
+    @Cacheable(key = "#id", value = "users")
+    public User getUserById(@PathVariable String id) {
+        System.out.println("Find user with Id : " + id);
         return userService.getUserById(id);
     }
 
     @PutMapping("/{id}")
-    @CacheEvict(key="#id", value = "users")
-    public User modifyUser(@PathVariable String id, @RequestBody User book) {
-        return userService.modifyUser(id, book);
+    @CacheEvict(key = "#id", value = "users")
+    public User modifyUser(@PathVariable String id, @RequestBody User user) {
+        return userService.modifyUser(id, user);
     }
 
     @DeleteMapping("/{id}")
-    @CacheEvict(key="#id", value = "users")
+    @CacheEvict(key = "#id", value = "users")
     public boolean removeUser(@PathVariable String id) {
-        System.out.println("Uer to delete: "+id);
+        System.out.println("User to delete: " + id);
         return userService.removeUser(id);
     }
 

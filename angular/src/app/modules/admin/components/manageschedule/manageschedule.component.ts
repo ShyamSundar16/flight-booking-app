@@ -22,10 +22,10 @@ export class ManagescheduleComponent implements OnInit {
       code: new FormControl("", [Validators.required]),
       scheduledDate: new FormControl("", [Validators.required]),
       arrivalTime: new FormControl("", [Validators.required]),
-      depatureTime: new FormControl("", [Validators.required]),
+      departureTime: new FormControl("", [Validators.required]),
       status: new FormControl("", [Validators.required]),
-      availabeEconomyTickets: new FormControl(0, [Validators.required]),
-      availabeBusinessTickets: new FormControl(0, [Validators.required]),
+      availableEconomyTickets: new FormControl(0, [Validators.required]),
+      availableBusinessTickets: new FormControl(0, [Validators.required]),
     })
 
     this.updateScheduleForm = new FormGroup({
@@ -33,10 +33,10 @@ export class ManagescheduleComponent implements OnInit {
       code: new FormControl("", [Validators.required]),
       scheduledDate: new FormControl("", [Validators.required]),
       arrivalTime: new FormControl("", [Validators.required]),
-      depatureTime: new FormControl("", [Validators.required]),
+      departureTime: new FormControl("", [Validators.required]),
       status: new FormControl("", [Validators.required]),
-      availabeEconomyTickets: new FormControl(0, [Validators.required]),
-      availabeBusinessTickets: new FormControl(0, [Validators.required]),
+      availableEconomyTickets: new FormControl(0, [Validators.required]),
+      availableBusinessTickets: new FormControl(0, [Validators.required]),
     })
 
     this.getSchedule();

@@ -12,10 +12,10 @@ export class ScheduleService {
         this.s.code = newS.code;
         this.s.scheduledDate = newS.scheduledDate;
         this.s.arrivalTime = newS.arrivalTime;
-        this.s.depatureTime = newS.depatureTime;
+        this.s.departureTime = newS.departureTime;
         this.s.status = newS.status;
-        this.s.availabeBusinessTickets = newS.availabeBusinessTickets;
-        this.s.availabeEconomyTickets = newS.availabeEconomyTickets;
+        this.s.availableBusinessTickets = newS.availableBusinessTickets;
+        this.s.availableEconomyTickets = newS.availableEconomyTickets;
 
 
     }

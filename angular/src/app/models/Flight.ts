@@ -6,16 +6,16 @@ export class Flight {
     businessClassAvailable: boolean = false;
     economyClassAvailable: boolean = false;
     businessClassPrice:number=0;
-    availabeBusinessTickets:number=0;
+    availableBusinessTickets:number=0;
     economyClassPrice:number=0;
-    availabeEconomyTickets:number=0;
+    availableEconomyTickets:number=0;
     runson: string = "";
     from: string = "";
     to: string = "";
     contact: string = "";
     status: string = "";
     arrivalTime: string = "";  
-    depatureTime: string = "";
+    departureTime: string = "";
     dateOfDepature: string ="";  
 }
 

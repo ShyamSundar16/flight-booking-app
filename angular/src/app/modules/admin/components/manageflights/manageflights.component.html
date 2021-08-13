@@ -25,11 +25,11 @@
         <label> BusinessClass Available : </label><input type="checkbox" name="BusinessClassAvailable" formControlName="businessClassAvailable" required>
         <br>
         <input type="text" placeholder="BusinessClass Price" name="BusinessClassPrice" formControlName="businessClassPrice" *ngIf="addFlightForm.controls.businessClassAvailable.value" required>
-        <input type="number" placeholder="AvailabeBusinessTickets" name="AvailabeBusinessTickets" formControlName="availabeBusinessTickets" *ngIf="addFlightForm.controls.businessClassAvailable.value" required>
+        <input type="number" placeholder="availableBusinessTickets" name="availableBusinessTickets" formControlName="availableBusinessTickets" *ngIf="addFlightForm.controls.businessClassAvailable.value" required>
         <br>
         <label> EconomyClass Available : </label><input type="checkbox" name="EconomyClassAvailable" formControlName="economyClassAvailable" required>
         <input type="text" placeholder="EconomyClass Price" name="EconomyClassPrice" formControlName="economyClassPrice" *ngIf="addFlightForm.controls.economyClassAvailable.value" required>
-        <input type="number" placeholder="AvailabeEconomyTickets" name="AvailabeEconomyTickets" formControlName="availabeEconomyTickets" *ngIf="addFlightForm.controls.economyClassAvailable.value" required>
+        <input type="number" placeholder="availableEconomyTickets" name="availableEconomyTickets" formControlName="availableEconomyTickets" *ngIf="addFlightForm.controls.economyClassAvailable.value" required>
         <br>
         <br>
         <button type="submit"  style="width: 50%;" class="editbtn"><i class="fa fa-fw fa-check"></i>Update</button><button type="submit"  style="width: 50%;" (click)="cancelUpdateForm()" class="deletebtn"><i class="fa fa-fw fa-remove"></i>Cancel</button>

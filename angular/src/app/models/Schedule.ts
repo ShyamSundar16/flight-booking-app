@@ -3,10 +3,10 @@ export class Schedule {
     code: string = "";
     scheduledDate: string = "";  
     arrivalTime: string = "";  
-    depatureTime: string = "";  
+    departureTime: string = "";  
     status: string = "";
-    availabeEconomyTickets:number=0;
-    availabeBusinessTickets:number=0;
+    availableEconomyTickets:number=0;
+    availableBusinessTickets:number=0;
 }
 
 

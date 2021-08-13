@@ -20,7 +20,7 @@
       "to": "Mumbai",
       "dateOfJourney": "14/08/2021",
       "arrivalTime": "22:10",
-      "depatureTime": "22:40",
+      "departureTime": "22:40",
       "amountPaid": 10900,
       "status": "Active"
     },
@@ -44,7 +44,7 @@
       "to": "Chennai",
       "dateOfJourney": "16/08/2021",
       "arrivalTime": "13:30",
-      "depatureTime": "13:50",
+      "departureTime": "13:50",
       "amountPaid": 10900,
       "status": "Active"
     },
@@ -68,7 +68,7 @@
       "to": "Mumbai",
       "dateOfJourney": "14/08/2021",
       "arrivalTime": "22:10",
-      "depatureTime": "22:40",
+      "departureTime": "22:40",
       "amountPaid": 6500,
       "status": "Active"
     },
@@ -92,7 +92,7 @@
       "to": "Chennai",
       "dateOfJourney": "16/08/2021",
       "arrivalTime": "13:30",
-      "depatureTime": "13:50",
+      "departureTime": "13:50",
       "amountPaid": 6500,
       "status": "Active"
     }
@@ -199,20 +199,20 @@
       "code": "INDGO101",
       "scheduledDate": "14/08/2021",
       "arrivalTime": "22:10",
-      "depatureTime": "22:40",
+      "departureTime": "22:40",
       "status": "Active",
-      "availabeEconomyTickets": 1,
-      "availabeBusinessTickets": 1
+      "availableEconomyTickets": 1,
+      "availableBusinessTickets": 1
     },
     {
       "id": "AIRINDO101_16_08_2021_13:30",
       "code": "AIRINDO101",
       "scheduledDate": "16/08/2021",
       "arrivalTime": "13:30",
-      "depatureTime": "13:50",
+      "departureTime": "13:50",
       "status": "Active",
-      "availabeEconomyTickets": 0,
-      "availabeBusinessTickets": 0
+      "availableEconomyTickets": 0,
+      "availableBusinessTickets": 0
     }
   ]
 }

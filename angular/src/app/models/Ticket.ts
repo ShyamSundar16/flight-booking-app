@@ -11,7 +11,7 @@ from:string="";
 to:string="";
 dateOfJourney:string="";
 arrivalTime:string="";
-depatureTime:string="";
+departureTime:string="";
 amountPaid:number=0;
 status:string="";
 }

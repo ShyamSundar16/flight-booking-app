@@ -48,23 +48,24 @@ export class LoginComponent implements OnInit {
   }
 
   validateUserAndNavigate(emailId: string, password: string) {
-    let filteredUserObservable$: Observable<User> = this.userService.getUserById(emailId);
-    filteredUserObservable$.subscribe(filteredUserObservable => {
+    this.router.navigate(['/', 'admin', 'manageFlights']);
+    // let filteredUserObservable$: Observable<User> = this.userService.getUserById(emailId);
+    // filteredUserObservable$.subscribe(filteredUserObservable => {
       
-      if(filteredUserObservable.password == password){
-        if (emailId == "admin@gmail.com") {
-          this.router.navigate(['/', 'admin', 'manageFlights']);
-        }
-        else {
-          this.router.navigate(["searchFlight"])
-          sessionStorage.setItem("userid", emailId);
+    //   if(filteredUserObservable.password == password){
+    //     if (emailId == "admin@gmail.com") {
+    //       this.router.navigate(['/', 'admin', 'manageFlights']);
+    //     }
+    //     else {
+    //       this.router.navigate(["searchFlight"])
+    //       sessionStorage.setItem("userid", emailId);
 
-        }
-      }
-      else {
-        alert("Invalid Credentials");
-      }
-    });
+    //     }
+    //   }
+    //   else {
+    //     alert("Invalid Credentials");
+    //   }
+    // });
   }
 
   ngOnInit(): void {
