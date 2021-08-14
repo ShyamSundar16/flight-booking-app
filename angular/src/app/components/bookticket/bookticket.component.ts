@@ -197,7 +197,7 @@ export class BookticketComponent implements OnInit {
     onwardTicket.status = "Active";
     onwardTicket.amountPaid = this.getTotalAmount();
     onwardTicket.numberOfPassesngers = this.passengersCount;
-    onwardTicket.passesngers = this.passesngers;
+    onwardTicket.passesngers = JSON.stringify(this.passesngers);
     onwardTicket.pnr = generatedPNROnward;
     onwardTicket.id = generatedPNROnward;
     this.tickerService.saveTickets(onwardTicket).subscribe((res) => {
@@ -217,7 +217,7 @@ export class BookticketComponent implements OnInit {
       onwardTicket.status = "Active";
       onwardTicket.amountPaid = this.getTotalAmount();
       onwardTicket.numberOfPassesngers = this.passengersCount;
-      onwardTicket.passesngers = this.passesngers;
+      onwardTicket.passesngers = JSON.stringify(this.passesngers);
       onwardTicket.pnr = generatedPNROnward;
       onwardTicket.id = generatedPNROnward;
       this.tickerService.saveTickets(onwardTicket).subscribe((res) => {

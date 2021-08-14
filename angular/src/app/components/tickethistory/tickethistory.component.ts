@@ -23,10 +23,11 @@ export class TickethistoryComponent implements OnInit {
   showTicketHistory() {
     this.ticketService.getAllTickets()
       .subscribe((res: any) => {
+        console.log(res)
         this.tickets = res;
         this.tickets = this.tickets
-          .filter(ticket => ticket.bookedBy == sessionStorage.userid
-          )
+          // .filter(ticket => ticket.bookedBy == sessionStorage.userid
+          // )
       })
   }
 
@@ -37,6 +38,7 @@ export class TickethistoryComponent implements OnInit {
   }
 
   cancelTicket(ticket: Ticket) {
+    console.log("Cancelling")
     if (ticket.status == "Active") {
       let currentDate = new Date();
       let dateSplitter: string[] = ticket.dateOfJourney.split("/");
@@ -48,10 +50,12 @@ export class TickethistoryComponent implements OnInit {
       var Time = actualDate.getTime() - currentDate.getTime();
       let days: number = Time / (1000 * 3600 * 24)
 
+      console.log(days)
       if (days > 1) {
         ticket.status = "Cancelled"
         this.ticketService.updateTicket(ticket)
           .subscribe((res: any) => {
+            console.log(res)
             this.showTicketHistory()
           });
       }

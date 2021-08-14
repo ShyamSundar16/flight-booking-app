@@ -15,7 +15,7 @@ export class DownloadticketComponent implements OnInit {
   passengers: Passenger[] = []
   constructor(public ticketService: TicketService) {
     this.ticket = ticketService.ticket;
-    this.passengers = ticketService.ticket.passesngers;
+    this.passengers = JSON.parse(ticketService.ticket.passesngers);
   }
 
   ngOnInit(): void {

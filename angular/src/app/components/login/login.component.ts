@@ -48,7 +48,9 @@ export class LoginComponent implements OnInit {
   }
 
   validateUserAndNavigate(emailId: string, password: string) {
-    this.router.navigate(['/', 'admin', 'manageFlights']);
+    // this.router.navigate(['/', 'admin', 'manageFlights']);
+              this.router.navigate(["searchFlight"])
+
     // let filteredUserObservable$: Observable<User> = this.userService.getUserById(emailId);
     // filteredUserObservable$.subscribe(filteredUserObservable => {
       

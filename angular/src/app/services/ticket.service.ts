@@ -4,7 +4,7 @@ import { Ticket } from "../models/Ticket";
 
 @Injectable()
 export class TicketService {
-    private url: string = "http://localhost:3000/tickets";
+    private url: string = "http://localhost:8989/api/ticketmangement/ticket";
     private t = new Ticket();
 
     public set ticket(newT: Ticket) {
@@ -29,6 +29,7 @@ export class TicketService {
     constructor(private httpClient: HttpClient) {
     }
     getAllTickets() {
+        console.log(this.httpClient.get(this.url))
         return this.httpClient.get(this.url);
     }
 
