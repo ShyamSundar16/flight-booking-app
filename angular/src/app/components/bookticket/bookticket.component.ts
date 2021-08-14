@@ -188,8 +188,8 @@ export class BookticketComponent implements OnInit {
 
     let onwardTicket = new Ticket();
     onwardTicket.flightCode = this.onwardFligt.code;
-    onwardTicket.from = this.onwardFligt.from;
-    onwardTicket.to = this.onwardFligt.to;
+    onwardTicket.source = this.onwardFligt.source;
+    onwardTicket.destination = this.onwardFligt.destination;
     onwardTicket.arrivalTime = this.onwardFligt.arrivalTime;
     onwardTicket.departureTime = this.onwardFligt.departureTime;
     onwardTicket.dateOfJourney = this.onwardFligt.dateOfDepature;
@@ -208,8 +208,8 @@ export class BookticketComponent implements OnInit {
       generatedPNROnward = this.returnFligt.code + this.getRandomInt(1, 5000);
 
       onwardTicket.flightCode = this.returnFligt.code;
-      onwardTicket.from = this.returnFligt.from;
-      onwardTicket.to = this.returnFligt.to;
+      onwardTicket.source = this.returnFligt.source;
+      onwardTicket.destination = this.returnFligt.destination;
       onwardTicket.arrivalTime = this.returnFligt.arrivalTime;
       onwardTicket.departureTime = this.returnFligt.departureTime;
       onwardTicket.dateOfJourney = this.returnFligt.dateOfDepature;

@@ -12,8 +12,8 @@ export class TicketService {
         this.t.pnr = newT.pnr;
         this.t.flightCode = newT.flightCode;
         this.t.bookedBy = newT.bookedBy;
-        this.t.from = newT.from;
-        this.t.to = newT.to;
+        this.t.source = newT.source;
+        this.t.destination = newT.destination;
         this.t.arrivalTime = newT.arrivalTime;
         this.t.departureTime = newT.departureTime;
         this.t.dateOfJourney = newT.dateOfJourney;

@@ -16,9 +16,9 @@
         <input type="text" placeholder="id" name="id" formControlName="id" required>
         <input type="text" placeholder="Code" name="Code" formControlName="code" required>
         <input type="text" placeholder="Airlines" name="Airlines" formControlName="airlines" required>
-        <input type="text" placeholder="RunsOn" name="RunsOn" formControlName="runson" required>
-        <input type="text" placeholder="From" name="From" formControlName="from" required>
-        <input type="text" placeholder="To" name="To" formControlName="to" required>
+        <input type="text" placeholder="RunsOn" name="RunsOn" formControlName="runsOn" required>
+        <input type="text" placeholder="From" name="From" formControlName="source" required>
+        <input type="text" placeholder="To" name="To" formControlName="destination" required>
         <input type="text" placeholder="Contact" name="Contact" formControlName="contact" required>
         <input type="text" placeholder="Status" name="Status" formControlName="status" required>
 
@@ -43,9 +43,9 @@
         <input type="text" placeholder="Code" name="Code" formControlName="code" required>
         <input type="text" placeholder="Airlines" name="Airlines" formControlName="airlines" required>
         <input type="text" placeholder="Instrument" name="Instrument" formControlName="instrument" required>
-       <input type="text" placeholder="RunsOn" name="RunsOn" formControlName="runson" required>
-        <input type="text" placeholder="From" name="From" formControlName="from" required>
-        <input type="text" placeholder="To" name="To" formControlName="to" required>
+       <input type="text" placeholder="RunsOn" name="RunsOn" formControlName="runsOn" required>
+        <input type="text" placeholder="From" name="From" formControlName="source" required>
+        <input type="text" placeholder="To" name="To" formControlName="destination" required>
         <input type="text" placeholder="Contact" name="Contact" formControlName="contact" required>
         <input type="text" placeholder="Status" name="Status" formControlName="status" required>
 
@@ -84,9 +84,9 @@
       <td>{{flight.instrument}}</td>
       <td>{{flight.businessClassPrice}}</td>
       <td>{{flight.economyClassPrice}}</td>
-      <td>{{flight.runson}}</td>
-      <td>{{flight.from}}</td>
-      <td>{{flight.to}}</td>
+      <td>{{flight.runsOn}}</td>
+      <td>{{flight.source}}</td>
+      <td>{{flight.destination}}</td>
       <td>{{flight.contact}}</td>
       <td>{{flight.status}}</td>
       <td><button type="button" class="deletebtn" (click)="deleteFlightById(flight.id)"><i

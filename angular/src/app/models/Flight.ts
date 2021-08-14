@@ -9,9 +9,9 @@ export class Flight {
     availableBusinessTickets:number=0;
     economyClassPrice:number=0;
     availableEconomyTickets:number=0;
-    runson: string = "";
-    from: string = "";
-    to: string = "";
+    runsOn: string = "";
+    source: string = "";
+    destination: string = "";
     contact: string = "";
     status: string = "";
     arrivalTime: string = "";  

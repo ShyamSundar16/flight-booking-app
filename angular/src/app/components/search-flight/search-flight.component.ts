@@ -74,7 +74,7 @@ export class SearchFlightComponent implements OnInit {
       .subscribe((res: any) => {
         this.filteredFlights = res;
         this.filteredReturnFlights = res;
-        this.filteredFlights = this.filteredFlights.filter(flight => flight.from == this.source && flight.to == this.destination)
+        this.filteredFlights = this.filteredFlights.filter(flight => flight.source == this.source && flight.destination == this.destination)
         this.scheduleService.getScheduleInfo()
           .subscribe((res: any) => {
             let schedules: Schedule[] = res;
@@ -105,7 +105,7 @@ export class SearchFlightComponent implements OnInit {
         if (this.roundTrip) {
           this.showReturnSearchTable = true;
           this.filteredReturnFlights = this.filteredReturnFlights.filter(flight =>
-            flight.from == this.destination && flight.to == this.source)
+            flight.source == this.destination && flight.destination == this.source)
           this.scheduleService.getScheduleInfo()
             .subscribe((res: any) => {
               let schedules: Schedule[] = res;

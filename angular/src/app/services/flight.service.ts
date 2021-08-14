@@ -18,9 +18,9 @@ export class FlightService {
         this.f.availableEconomyTickets = newF.availableEconomyTickets;
         this.f.businessClassPrice = newF.businessClassPrice;
         this.f.economyClassPrice = newF.economyClassPrice;
-        this.f.runson = newF.runson;
-        this.f.from = newF.from;
-        this.f.to = newF.to;
+        this.f.runsOn = newF.runsOn;
+        this.f.source = newF.source;
+        this.f.destination = newF.destination;
         this.f.contact = newF.contact;
         this.f.status = newF.status;
         this.f.arrivalTime = newF.arrivalTime;
