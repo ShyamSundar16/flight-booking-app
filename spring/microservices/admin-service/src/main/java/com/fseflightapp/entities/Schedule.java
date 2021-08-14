@@ -14,12 +14,12 @@ public class Schedule {
     private String departureTime;
     private int availableEconomyTickets;
     private int availableBusinessTickets;
-    private Date scheduledDate;
+    private String scheduledDate;
     private String status;
 
     public Schedule(){}
 
-    public Schedule(String id, String code, String arrivalTime, String departureTime, int availableEconomyTickets, int availableBusinessTickets, Date scheduledDate, String status) {
+    public Schedule(String id, String code, String arrivalTime, String departureTime, int availableEconomyTickets, int availableBusinessTickets, String scheduledDate, String status) {
         this.id = id;
         this.code = code;
         this.arrivalTime = arrivalTime;
@@ -78,11 +78,11 @@ public class Schedule {
         this.availableBusinessTickets = availableBusinessTickets;
     }
 
-    public Date getScheduledDate() {
+    public String getScheduledDate() {
         return scheduledDate;
     }
 
-    public void setScheduledDate(Date scheduledDate) {
+    public void setScheduledDate(String scheduledDate) {
         this.scheduledDate = scheduledDate;
     }
 

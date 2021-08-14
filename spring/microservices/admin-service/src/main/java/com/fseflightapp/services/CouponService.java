@@ -35,18 +35,18 @@ public class CouponService {
     @Caching(evict = {
             @CacheEvict(value = "coupon", allEntries = true),
             @CacheEvict(value = "coupons", allEntries = true)})
-    public String save(Coupon flight) {
-        couponRepository.save(flight);
-        return "SuccessFully added";
+    public Coupon save(Coupon coupon) {
+        return couponRepository.save(coupon);
+
     }
 
     @Caching(evict = {
             @CacheEvict(value = "coupon", allEntries = true),
             @CacheEvict(value = "coupons", allEntries = true)})
-    public Coupon modifyCoupon(int id, Coupon flight) {
+    public Coupon modifyCoupon(int id, Coupon coupon) {
         if (couponRepository.existsById(id)) {
-            flight.setId(id);
-            return couponRepository.save(flight);
+            coupon.setId(id);
+            return couponRepository.save(coupon);
         } else {
             System.out.println("Coupon not found with id: " + id);
             return null;

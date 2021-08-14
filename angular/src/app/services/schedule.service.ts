@@ -4,7 +4,7 @@ import { Schedule } from "../models/Schedule";
 
 @Injectable()
 export class ScheduleService {
-    private url: string = "http://localhost:3000/schedule";
+    private url: string = "http://localhost:8989/api/admin/schedule";
     private s = new Schedule();
 
     public set schedule(newS: Schedule) {

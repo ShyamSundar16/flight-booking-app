@@ -18,32 +18,36 @@ public class CouponController {
     @Autowired
     CouponService couponService;
 
+    @CrossOrigin
     @GetMapping("")
     public List<Coupon> getAllCoupons() {
         return couponService.getAllCoupons();
     }
 
-    @PostMapping("/add")
-    public String addCoupon(@RequestBody Coupon coupon) throws Exception {
-        couponService.save(coupon);
-        return "redirect:../";
-    }
-
-
+    @CrossOrigin
     @GetMapping("/{id}")
     public Coupon getCouponById(@PathVariable int id) {
-        System.out.println("Find coupon with Id : " + id);
         return couponService.getCouponById(id);
     }
 
+    @CrossOrigin
+    @PostMapping("")
+    public Coupon saveCoupon(@RequestBody Coupon coupon) {
+        return couponService.save(coupon);
+    }
+
+    @CrossOrigin
     @PutMapping("/{id}")
     public Coupon modifyCoupon(@PathVariable int id, @RequestBody Coupon coupon) {
+        System.out.println("Coupon to find: " + id);
+        System.out.println("Coupon to update: " + coupon);
         return couponService.modifyCoupon(id, coupon);
     }
 
+    @CrossOrigin
     @DeleteMapping("/{id}")
     public boolean removeCoupon(@PathVariable int id) {
-        System.out.println("Coupon to delete: " + id);
+        System.out.println("Book to delete: " + id);
         return couponService.removeCoupon(id);
     }
 }

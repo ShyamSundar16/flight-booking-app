@@ -5,7 +5,7 @@
 <app-sidenav></app-sidenav>
 
 <div class="content">
-  <button type="button" class="addbtn" (click)="showAddForm()"><i class="fa fa-fw fa-plus"></i>Add Scheduled</button>
+  <button type="button" class="addbtn" (click)="showAddForm()"><i class="fa fa-fw fa-plus"></i>Add Schedule</button>
 
   <div class="container">
     <form [formGroup]="updateScheduleForm" class="form-inline" (ngSubmit)="modifySchedule()" *ngIf="showUpdateScheduleForm">
@@ -39,7 +39,7 @@
         <input type="text" placeholder="departureTime (HH:MM)" name="departureTime" formControlName="departureTime" required>
         <input type="text" placeholder="Status" name="Status" formControlName="status" required>
 
-        <button type="submit"  style="width: 50%;" class="editbtn"><i class="fa fa-fw fa-check"></i>Update</button><button type="submit"  style="width: 50%;" (click)="cancelAddForm()" class="deletebtn"><i class="fa fa-fw fa-remove"></i>Cancel</button>
+        <button type="submit"  style="width: 50%;" class="editbtn"><i class="fa fa-fw fa-check"></i>Addd</button><button type="submit"  style="width: 50%;" (click)="cancelAddForm()" class="deletebtn"><i class="fa fa-fw fa-remove"></i>Cancel</button>
       </div>
     </form>
   </div>

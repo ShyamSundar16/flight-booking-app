@@ -16,30 +16,33 @@ public class ScheduleController {
     @Autowired
     ScheduleService scheduleService;
 
+    @CrossOrigin
     @GetMapping("")
     public List<Schedule> getAllSchedules() {
-        System.out.println("Finding schedules from db..");
         return scheduleService.getAllSchedules();
     }
 
-    @PostMapping("/add")
-    public String addSchedule(@RequestBody Schedule schedule) throws Exception {
-        scheduleService.save(schedule);
-        return "redirect:../";
-    }
-
-
+    @CrossOrigin
     @GetMapping("/{id}")
     public Schedule getScheduleById(@PathVariable String id) {
-        System.out.println("Find schedule with Id : " + id);
         return scheduleService.getScheduleById(id);
     }
 
+    @CrossOrigin
+    @PostMapping("")
+    public Schedule saveSchedule(@RequestBody Schedule schedule) {
+        return scheduleService.save(schedule);
+    }
+
+    @CrossOrigin
     @PutMapping("/{id}")
     public Schedule modifySchedule(@PathVariable String id, @RequestBody Schedule schedule) {
+        System.out.println("Schedule to find: " + id);
+        System.out.println("Schedule to update: " + schedule);
         return scheduleService.modifySchedule(id, schedule);
     }
 
+    @CrossOrigin
     @DeleteMapping("/{id}")
     public boolean removeSchedule(@PathVariable String id) {
         System.out.println("Schedule to delete: " + id);

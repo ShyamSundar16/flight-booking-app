@@ -23,9 +23,9 @@ public class ScheduleService {
 
     @Cacheable("schedule")
     public Schedule getScheduleById(String id) {
-        Optional<Schedule> flightOptional = scheduleRepository.findById(id);
-        if (flightOptional.isPresent()) {
-            return flightOptional.get();
+        Optional<Schedule> scheduleOptional = scheduleRepository.findById(id);
+        if (scheduleOptional.isPresent()) {
+            return scheduleOptional.get();
         } else {
             System.out.println("Schedule not found with id: " + id);
             return null;
@@ -35,18 +35,17 @@ public class ScheduleService {
     @Caching(evict = {
             @CacheEvict(value = "schedule", allEntries = true),
             @CacheEvict(value = "schedules", allEntries = true)})
-    public String save(Schedule flight) {
-        scheduleRepository.save(flight);
-        return "SuccessFully added";
+    public Schedule save(Schedule schedule) {
+        return scheduleRepository.save(schedule);
     }
 
     @Caching(evict = {
             @CacheEvict(value = "schedule", allEntries = true),
             @CacheEvict(value = "schedules", allEntries = true)})
-    public Schedule modifySchedule(String id, Schedule flight) {
+    public Schedule modifySchedule(String id, Schedule schedule) {
         if (scheduleRepository.existsById(id)) {
-            flight.setId(id);
-            return scheduleRepository.save(flight);
+            schedule.setId(id);
+            return scheduleRepository.save(schedule);
         } else {
             System.out.println("Schedule not found with id: " + id);
             return null;

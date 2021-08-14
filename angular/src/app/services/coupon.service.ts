@@ -4,7 +4,7 @@ import { Coupon } from "../models/Coupon";
 
 @Injectable()
 export class CouponService {
-    private url: string = "http://localhost:3000/coupon";
+    private url: string = "http://localhost:8989/api/admin/coupons";
     private c = new Coupon();
 
 
