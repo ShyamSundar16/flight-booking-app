@@ -29,7 +29,6 @@ export class TicketService {
     constructor(private httpClient: HttpClient) {
     }
     getAllTickets() {
-        console.log(this.httpClient.get(this.url))
         return this.httpClient.get(this.url);
     }
 
