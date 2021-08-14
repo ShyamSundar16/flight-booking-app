@@ -4,14 +4,14 @@ import com.fseflightapp.entities.User;
 import com.fseflightapp.repositories.UserRepository;
 import com.fseflightapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/users")
+@CrossOrigin(origins = {"http://localhost:4200"})
+
 public class UserController {
     @Autowired
     private UserRepository userRepo;
@@ -20,7 +20,6 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("")
-    @Cacheable(value = "users")
     public List<User> getAllUsers() {
         System.out.println("Finding users from db..");
         return userService.getAllUsers();
@@ -34,20 +33,17 @@ public class UserController {
 
 
     @GetMapping("/{id}")
-    @Cacheable(key = "#id", value = "users")
     public User getUserById(@PathVariable String id) {
         System.out.println("Find user with Id : " + id);
         return userService.getUserById(id);
     }
 
     @PutMapping("/{id}")
-    @CacheEvict(key = "#id", value = "users")
     public User modifyUser(@PathVariable String id, @RequestBody User user) {
         return userService.modifyUser(id, user);
     }
 
     @DeleteMapping("/{id}")
-    @CacheEvict(key = "#id", value = "users")
     public boolean removeUser(@PathVariable String id) {
         System.out.println("User to delete: " + id);
         return userService.removeUser(id);

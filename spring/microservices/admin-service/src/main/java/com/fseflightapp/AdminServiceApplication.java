@@ -8,8 +8,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableEurekaClient
-@EnableCaching
 @EnableSwagger2
+@EnableCaching
 public class AdminServiceApplication {
 
 	public static void main(String[] args) {

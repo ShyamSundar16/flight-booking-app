@@ -3,6 +3,9 @@ package com.fseflightapp.services;
 import com.fseflightapp.entities.Schedule;
 import com.fseflightapp.repositories.ScheduleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,10 +16,12 @@ public class ScheduleService {
     @Autowired
     ScheduleRepository scheduleRepository;
 
+    @Cacheable("schedules")
     public List<Schedule> getAllSchedules() {
         return scheduleRepository.findAll();
     }
 
+    @Cacheable("schedule")
     public Schedule getScheduleById(String id) {
         Optional<Schedule> flightOptional = scheduleRepository.findById(id);
         if (flightOptional.isPresent()) {
@@ -27,11 +32,17 @@ public class ScheduleService {
         }
     }
 
+    @Caching(evict = {
+            @CacheEvict(value = "schedule", allEntries = true),
+            @CacheEvict(value = "schedules", allEntries = true)})
     public String save(Schedule flight) {
         scheduleRepository.save(flight);
         return "SuccessFully added";
     }
 
+    @Caching(evict = {
+            @CacheEvict(value = "schedule", allEntries = true),
+            @CacheEvict(value = "schedules", allEntries = true)})
     public Schedule modifySchedule(String id, Schedule flight) {
         if (scheduleRepository.existsById(id)) {
             flight.setId(id);
@@ -42,6 +53,9 @@ public class ScheduleService {
         }
     }
 
+    @Caching(evict = {
+            @CacheEvict(value = "schedule", allEntries = true),
+            @CacheEvict(value = "schedules", allEntries = true)})
     public boolean removeSchedule(String id) {
         scheduleRepository.deleteById(id);
         return true;

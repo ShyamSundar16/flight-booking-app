@@ -3,6 +3,9 @@ package com.fseflightapp.service;
 import com.fseflightapp.entities.User;
 import com.fseflightapp.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,21 +17,12 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
-
-    public String save(User user) throws Exception {
-
-        userRepository.save(user);
-//        String subject = "Your account has been created";
-//        String body = "Welcome to FSE Flight booking Application !";
-//        String email = user.getEmail();
-//        emailUtil.send(email, subject, body);
-        return "SuccessFully added";
-    }
-
+    @Cacheable("users")
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
+    @Cacheable("user")
     public User getUserById(String id) {
         Optional<User> optional = userRepository.findById(id);
 
@@ -41,6 +35,22 @@ public class UserService {
 
     }
 
+    @Caching(evict = {
+            @CacheEvict(value = "user", allEntries = true),
+            @CacheEvict(value = "users", allEntries = true)})
+    public String save(User user) throws Exception {
+
+        userRepository.save(user);
+//        String subject = "Your account has been created";
+//        String body = "Welcome to FSE Flight booking Application !";
+//        String email = user.getEmail();
+//        emailUtil.send(email, subject, body);
+        return "SuccessFully added";
+    }
+
+    @Caching(evict = {
+            @CacheEvict(value = "user", allEntries = true),
+            @CacheEvict(value = "users", allEntries = true)})
     public User modifyUser(String id, User user) {
         if (userRepository.existsById(id)) {
             user.setId(id);
@@ -51,6 +61,9 @@ public class UserService {
         }
     }
 
+    @Caching(evict = {
+            @CacheEvict(value = "user", allEntries = true),
+            @CacheEvict(value = "users", allEntries = true)})
     public boolean removeUser(String id) {
         userRepository.deleteById(id);
         return true;
