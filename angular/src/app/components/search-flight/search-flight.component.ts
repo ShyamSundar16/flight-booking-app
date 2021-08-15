@@ -70,16 +70,19 @@ export class SearchFlightComponent implements OnInit {
     this.flightsBasedOnSchedule = [];
     this.returnFlightsBasedOnSchedule = [];
     this.showSearchTable = true;
+
     this.flightService.getAllFlights()
       .subscribe((res: any) => {
         this.filteredFlights = res;
         this.filteredReturnFlights = res;
         this.filteredFlights = this.filteredFlights.filter(flight => flight.source == this.source && flight.destination == this.destination)
+       
         this.scheduleService.getScheduleInfo()
           .subscribe((res: any) => {
             let schedules: Schedule[] = res;
             let doj: string = this.dateOfJourney + "";
             let matchDate: string = ";"
+            
             schedules.forEach(schedule => {
               let schDate: string[] = [];
               schDate = schedule.scheduledDate.split("/");
