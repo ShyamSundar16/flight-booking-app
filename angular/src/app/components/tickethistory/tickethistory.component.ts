@@ -23,11 +23,10 @@ export class TickethistoryComponent implements OnInit {
   showTicketHistory() {
     this.ticketService.getAllTickets()
       .subscribe((res: any) => {
-        console.log(res)
         this.tickets = res;
         this.tickets = this.tickets
-          // .filter(ticket => ticket.bookedBy == sessionStorage.userid
-          // )
+          .filter(ticket => ticket.bookedBy == sessionStorage.userid
+          )
       })
   }
 

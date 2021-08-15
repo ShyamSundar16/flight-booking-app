@@ -6,19 +6,21 @@ import { User } from "../models/User";
 @Injectable({"providedIn": "root"})
 export class UserService{
     private u = new User();
-    private url: string = "http://localhost:3000/users";
-
+    private url: string = "http://localhost:8989/api/usermangement/users";
+    private authenticationurl: string = "http://localhost:8989/api/usermangement/authenticate/token"
 
     constructor(private httpClient: HttpClient){
 
     }
     public set user(newU:User){
         this.u.id= newU.email;
+        this.u.username= newU.email;
         this.u.valid = newU.valid; 
         this.u.name = newU.name; 
         this.u.email= newU.email;
         this.u.phone= newU.phone;
         this.u.password= newU.password;
+        this.u.role= newU.role;
 
     }
 
