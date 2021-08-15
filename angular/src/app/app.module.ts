@@ -19,6 +19,7 @@ import { CouponService } from './services/coupon.service';
 import { TicketService } from './services/ticket.service';
 import { ScheduleService } from './services/schedule.service';
 import { DownloadticketComponent } from './components/downloadticket/downloadticket.component';
+import { SearchService } from './services/search.service';
 
 const routes: Routes = [
   { path: "home", component: HomeComponent },
@@ -49,7 +50,7 @@ const routes: Routes = [
   imports: [
     BrowserModule, RouterModule.forRoot(routes), ReactiveFormsModule,HttpClientModule
   ],
-   providers: [FlightService,CouponService,TicketService,SearchFlightComponent,ScheduleService],
+   providers: [FlightService,CouponService,TicketService,SearchFlightComponent,ScheduleService,SearchService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
