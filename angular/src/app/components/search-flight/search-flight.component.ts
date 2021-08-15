@@ -6,6 +6,7 @@ import { Flight } from 'src/app/models/Flight';
 import { Schedule } from 'src/app/models/Schedule';
 import { FlightService } from 'src/app/services/flight.service';
 import { ScheduleService } from 'src/app/services/schedule.service';
+import { SearchService } from 'src/app/services/search.service';
 import { UserService } from 'src/app/services/user.service';
 
 
@@ -34,11 +35,11 @@ export class SearchFlightComponent implements OnInit {
   showReturnSearchTable: boolean = false;
   selectedReturnFlight: Flight = new Flight;
 
-  addedReturnFlight:boolean=false;
-  addedOnwardFlight:boolean=false;
+  addedReturnFlight: boolean = false;
+  addedOnwardFlight: boolean = false;
 
   constructor(public userService: UserService, public flightService: FlightService
-    , public scheduleService: ScheduleService, private router: Router) {
+    , public scheduleService: ScheduleService, public searchService: SearchService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -71,72 +72,20 @@ export class SearchFlightComponent implements OnInit {
     this.returnFlightsBasedOnSchedule = [];
     this.showSearchTable = true;
 
-    this.flightService.getAllFlights()
+    this.searchService.filterFlights(this.source, this.destination, this.dateOfJourney + "")
       .subscribe((res: any) => {
-        this.filteredFlights = res;
-        this.filteredReturnFlights = res;
-        this.filteredFlights = this.filteredFlights.filter(flight => flight.source == this.source && flight.destination == this.destination)
-       
-        this.scheduleService.getScheduleInfo()
-          .subscribe((res: any) => {
-            let schedules: Schedule[] = res;
-            let doj: string = this.dateOfJourney + "";
-            let matchDate: string = ";"
-            
-            schedules.forEach(schedule => {
-              let schDate: string[] = [];
-              schDate = schedule.scheduledDate.split("/");
-              matchDate = schDate[2] + "-" + schDate[1] + "-" + schDate[0];
-              if (matchDate == doj) {
-
-                this.filteredFlights.forEach(flight => {
-                  if (flight.code == schedule.code) {
-                    flight.arrivalTime = schedule.arrivalTime;
-                    flight.departureTime = schedule.departureTime;
-                    flight.availableBusinessTickets = schedule.availableBusinessTickets;
-                    flight.availableEconomyTickets = schedule.availableEconomyTickets;
-                    flight.status = schedule.status;
-                    flight.dateOfDepature = schedule.scheduledDate;
-                    this.flightsBasedOnSchedule.push(flight);
-
-                  }
-                })
-              }
-            });
-
-          })
-        if (this.roundTrip) {
-          this.showReturnSearchTable = true;
-          this.filteredReturnFlights = this.filteredReturnFlights.filter(flight =>
-            flight.source == this.destination && flight.destination == this.source)
-          this.scheduleService.getScheduleInfo()
-            .subscribe((res: any) => {
-              let schedules: Schedule[] = res;
-              let doj: string = this.dateOfReturnJourney + "";
-              let matchDate: string = ";"
-              schedules.forEach(schedule => {
-                let schDate: string[] = [];
-                schDate = schedule.scheduledDate.split("/");
-                matchDate = schDate[2] + "-" + schDate[1] + "-" + schDate[0];
-                if (matchDate == doj) {
-                  this.filteredReturnFlights.forEach(flight => {
-                    if (flight.code == schedule.code) {
-                      flight.arrivalTime = schedule.arrivalTime;
-                      flight.departureTime = schedule.departureTime;
-                      flight.status = schedule.status;
-                      flight.availableBusinessTickets = schedule.availableBusinessTickets;
-                      flight.availableEconomyTickets = schedule.availableEconomyTickets;
-                      flight.dateOfDepature = schedule.scheduledDate;
-                      this.returnFlightsBasedOnSchedule.push(flight);
-
-                    }
-                  })
-                }
-              });
-
-            })
-        }
+        console.log(res)
+        this.flightsBasedOnSchedule = res;
       })
+
+    if (this.roundTrip) {
+      this.showReturnSearchTable = true;
+      this.searchService.filterFlights(this.destination, this.source, this.dateOfReturnJourney + "")
+        .subscribe((res: any) => {
+          console.log(res)
+          this.returnFlightsBasedOnSchedule = res;
+        })
+    }
   }
 
   bookFlight() {
@@ -167,20 +116,20 @@ export class SearchFlightComponent implements OnInit {
   }
 
   addOnwardFlight(flight: Flight) {
-    this.addedOnwardFlight=true;
+    this.addedOnwardFlight = true;
 
     this.selectedOnwordFlight = flight;
   }
 
   addReturnFlight(flight: Flight) {
-    this.addedReturnFlight=true;
+    this.addedReturnFlight = true;
     this.selectedReturnFlight = flight;
   }
-  checkBeforeProceed():boolean{
-    if(this.roundTrip && this.addedReturnFlight){
+  checkBeforeProceed(): boolean {
+    if (this.roundTrip && this.addedReturnFlight) {
       return true;
     }
-    if(!this.roundTrip && this.addedOnwardFlight){
+    if (!this.roundTrip && this.addedOnwardFlight) {
       return true;
     }
     return false;
