@@ -1,11 +1,14 @@
 package com.fseflightapp.service;
 
 import com.fseflightapp.entities.Ticket;
+import com.fseflightapp.exception.TicketNotFoundException;
 import com.fseflightapp.repository.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.Caching;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,13 +25,15 @@ public class TicketService {
     }
 
     @Cacheable("ticket")
-    public Ticket getTicketById(String  id) {
+    public ResponseEntity<Ticket> getTicketById(String  id) throws TicketNotFoundException {
         Optional<Ticket> ticketOptional = ticketRepository.findById(id);
         if (ticketOptional.isPresent()) {
-            return ticketOptional.get();
+            return new ResponseEntity<Ticket>(ticketOptional.get(), HttpStatus.OK);
+
         } else {
             System.out.println("Ticket not found with id: " + id);
-            return null;
+            throw new TicketNotFoundException("Ticket not found with id: "+id);
+
         }
     }
 

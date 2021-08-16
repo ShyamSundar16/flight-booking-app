@@ -8,10 +8,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = {"http://localhost:4200"})
 @RestController
 @RequestMapping("/users")
-@CrossOrigin(origins = {"http://localhost:4200"})
-
 public class UserController {
     @Autowired
     private UserRepository userRepo;
@@ -19,30 +18,36 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @CrossOrigin
     @GetMapping("")
     public List<User> getAllUsers() {
         System.out.println("Finding users from db..");
         return userService.getAllUsers();
     }
 
+    @CrossOrigin
     @PostMapping("/register")
     public String addUser(@RequestBody User user) throws Exception {
+        System.out.println("Reached ");
         userService.save(user);
         return "redirect:../";
     }
 
 
+    @CrossOrigin
     @GetMapping("/{id}")
     public User getUserById(@PathVariable String id) {
         System.out.println("Find user with Id : " + id);
         return userService.getUserById(id);
     }
 
+    @CrossOrigin
     @PutMapping("/{id}")
     public User modifyUser(@PathVariable String id, @RequestBody User user) {
         return userService.modifyUser(id, user);
     }
 
+    @CrossOrigin
     @DeleteMapping("/{id}")
     public boolean removeUser(@PathVariable String id) {
         System.out.println("User to delete: " + id);

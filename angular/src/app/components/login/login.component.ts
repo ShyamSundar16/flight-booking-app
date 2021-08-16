@@ -52,7 +52,8 @@ export class LoginComponent implements OnInit {
       .subscribe((res) => {
         userObj.valid = true;
         this.userService.user = userObj;
-        this.router.navigate(["searchFlight"]);
+        alert("Registered Successfully, Kindly login to proceed.")
+        this.router.navigate(["login"]);
       });
   }
 

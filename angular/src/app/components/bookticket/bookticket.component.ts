@@ -175,13 +175,46 @@ export class BookticketComponent implements OnInit {
   }
 
   payAndBookTicket() {
-
-
     let keyConstructonward: string[] = this.onwardFligt.dateOfDepature.split("/");
     let onwardScheduleid = this.onwardFligt.code + "_" + keyConstructonward[0] + "_" + keyConstructonward[1] + "_" + keyConstructonward[2] + "_" + this.onwardFligt.arrivalTime;
 
     let keyConstructreturn = this.returnFligt.dateOfDepature.split("/");
     let returnScheduleid = this.returnFligt.code + "_" + keyConstructreturn[0] + "_" + keyConstructreturn[1] + "_" + keyConstructreturn[2] + "_" + this.returnFligt.arrivalTime;
+
+    this.scheduleService.getScheduleInfo()
+    .subscribe((res: any) => {
+   
+      let scheduleList: Schedule[] = res;
+      scheduleList.forEach(schedule => {
+
+        let onwardSchedule: Schedule = new Schedule
+        let returnSchedule: Schedule = new Schedule
+
+        if (schedule.id == onwardScheduleid) {
+          onwardSchedule = schedule
+          if (onwardSchedule != null) {
+            onwardSchedule.availableBusinessTickets = onwardSchedule.availableBusinessTickets - this.onwardBusinessPassengerCount;
+            onwardSchedule.availableEconomyTickets = onwardSchedule.availableEconomyTickets - this.onwardEconmoyPassengerCount;
+            this.scheduleService.updateSchedule(onwardSchedule).subscribe((res: any) => {
+            })
+          }
+        }
+        if (schedule.id == returnScheduleid) {
+          returnSchedule = schedule
+          if (this.roundtripAvailable) {
+            if (returnSchedule != null) {
+              
+              returnSchedule.availableBusinessTickets = returnSchedule.availableBusinessTickets - this.returnBusinessPassengerCount;
+              returnSchedule.availableEconomyTickets = returnSchedule.availableEconomyTickets - this.returEconmoyPassengerCount;
+              this.scheduleService.updateSchedule(returnSchedule).subscribe((res: any) => {
+
+              })
+            }
+          }
+        }
+      })
+    })
+
 
     let generatedPNROnward: string = "";
 
@@ -223,39 +256,6 @@ export class BookticketComponent implements OnInit {
       onwardTicket.id = generatedPNROnward;
       this.searchService.publishTicket(onwardTicket).subscribe((res) => {
       });
-
-
-      this.scheduleService.getScheduleInfo()
-        .subscribe((res: any) => {
-          let scheduleList: Schedule[] = res;
-          scheduleList.forEach(schedule => {
-
-            let onwardSchedule: Schedule = new Schedule
-            let returnSchedule: Schedule = new Schedule
-            if (schedule.id == onwardScheduleid) {
-              onwardSchedule = schedule
-              if (onwardSchedule != null) {
-                onwardSchedule.availableBusinessTickets = onwardSchedule.availableBusinessTickets - this.onwardBusinessPassengerCount;
-                onwardSchedule.availableEconomyTickets = onwardSchedule.availableEconomyTickets - this.onwardEconmoyPassengerCount;
-                this.scheduleService.updateSchedule(onwardSchedule).subscribe((res: any) => {
-                })
-              }
-            }
-            if (schedule.id == returnScheduleid) {
-              returnSchedule = schedule
-              if (this.roundtripAvailable) {
-                if (returnSchedule != null) {
-                  
-                  returnSchedule.availableBusinessTickets = returnSchedule.availableBusinessTickets - this.returnBusinessPassengerCount;
-                  returnSchedule.availableEconomyTickets = returnSchedule.availableEconomyTickets - this.returEconmoyPassengerCount;
-                  this.scheduleService.updateSchedule(returnSchedule).subscribe((res: any) => {
-
-                  })
-                }
-              }
-            }
-          })
-        })
 
     }
 

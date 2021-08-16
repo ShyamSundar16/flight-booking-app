@@ -1,9 +1,11 @@
 package com.fseflightapp.controller;
 
 import com.fseflightapp.entities.Ticket;
+import com.fseflightapp.exception.TicketNotFoundException;
 import com.fseflightapp.repository.TicketRepository;
 import com.fseflightapp.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,7 +31,7 @@ public class TicketController {
 
     @CrossOrigin
     @GetMapping("/{id}")
-    public Ticket getTicketById(@PathVariable String  id) {
+    public ResponseEntity<Ticket> getTicketById(@PathVariable String  id) throws TicketNotFoundException {
         return ticketService.getTicketById(id);
     }
 

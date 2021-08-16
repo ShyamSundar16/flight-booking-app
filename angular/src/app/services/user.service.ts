@@ -37,7 +37,7 @@ export class UserService{
     }
 
     saveUser(user: User) {
-        return this.httpClient.post(this.url, user);
+        return this.httpClient.post(this.url+"/register", user);
     }
 
     deleteUser(email: string) {

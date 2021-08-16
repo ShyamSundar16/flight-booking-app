@@ -1,8 +1,10 @@
 package com.fseflightapp.controllers;
 
 import com.fseflightapp.entities.Flight;
+import com.fseflightapp.exception.FlightNotFoundException;
 import com.fseflightapp.services.FlightService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,7 +26,7 @@ public class FlightController {
 
     @CrossOrigin
     @GetMapping("/{id}")
-    public Flight getFlightById(@PathVariable int id){
+    public ResponseEntity<Flight> getFlightById(@PathVariable int id) throws FlightNotFoundException {
         return service.getFlightById(id);
     }
     @CrossOrigin

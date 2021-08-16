@@ -1,8 +1,11 @@
 package com.fseflightapp.services;
 
 import com.fseflightapp.entities.Flight;
+import com.fseflightapp.exception.FlightNotFoundException;
 import com.fseflightapp.repositories.FlightRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -23,13 +26,13 @@ public class FlightService {
     }
 
     @Cacheable("flight")
-    public Flight getFlightById(int id) {
+    public ResponseEntity<Flight> getFlightById(int id) throws FlightNotFoundException {
         Optional<Flight> flightOptional = flightRepository.findById(id);
         if (flightOptional.isPresent()) {
-            return flightOptional.get();
+            return new ResponseEntity<Flight>(flightOptional.get(), HttpStatus.OK);
         } else {
             System.out.println("Flight not found with id: " + id);
-            return null;
+            throw new FlightNotFoundException("Flight not found with id: "+id);
         }
     }
     @Caching(evict = {

@@ -1,11 +1,16 @@
 package com.fseflightapp.services;
 
+import com.fseflightapp.entities.Flight;
 import com.fseflightapp.entities.Schedule;
+import com.fseflightapp.exception.FlightNotFoundException;
+import com.fseflightapp.exception.ScheduleNotFoundException;
 import com.fseflightapp.repositories.ScheduleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.Caching;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,13 +27,15 @@ public class ScheduleService {
     }
 
     @Cacheable("schedule")
-    public Schedule getScheduleById(String id) {
+    public ResponseEntity<Schedule> getScheduleById(String id) throws ScheduleNotFoundException {
         Optional<Schedule> scheduleOptional = scheduleRepository.findById(id);
         if (scheduleOptional.isPresent()) {
-            return scheduleOptional.get();
+            return new ResponseEntity<Schedule>(scheduleOptional.get(), HttpStatus.OK);
+
         } else {
             System.out.println("Schedule not found with id: " + id);
-            return null;
+            throw new ScheduleNotFoundException("Schedule not found with id: "+id);
+
         }
     }
 

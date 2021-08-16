@@ -22,9 +22,6 @@ public class JwtUserDetailsService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
-        // spring-security will find user from db
-        // you can write jdbc code
 		com.fseflightapp.entities.User userById = userService.getUserById(username);
 		if (userById != null) {
 			SimpleGrantedAuthority authority = new SimpleGrantedAuthority(userById.getRole());

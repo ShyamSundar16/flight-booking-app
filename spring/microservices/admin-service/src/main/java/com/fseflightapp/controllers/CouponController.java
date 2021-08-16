@@ -1,9 +1,11 @@
 package com.fseflightapp.controllers;
 
 import com.fseflightapp.entities.Coupon;
+import com.fseflightapp.exception.CouponNotFoundException;
 import com.fseflightapp.repositories.CouponRepository;
 import com.fseflightapp.services.CouponService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,7 +28,7 @@ public class CouponController {
 
     @CrossOrigin
     @GetMapping("/{id}")
-    public Coupon getCouponById(@PathVariable int id) {
+    public ResponseEntity<Coupon> getCouponById(@PathVariable int id) throws CouponNotFoundException {
         return couponService.getCouponById(id);
     }
 

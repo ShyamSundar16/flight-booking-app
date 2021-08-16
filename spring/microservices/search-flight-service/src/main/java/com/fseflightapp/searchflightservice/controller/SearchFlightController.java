@@ -6,6 +6,8 @@ import com.fseflightapp.searchflightservice.model.Ticket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -63,9 +65,9 @@ public class SearchFlightController {
 
     @CrossOrigin
     @PostMapping("/publish")
-    public String publishTicket( @RequestBody Ticket ticket) {
+    public ResponseEntity<Ticket> publishTicket( @RequestBody Ticket ticket) {
         kafkaTemplate.send(TOPIC, ticket);
-
-        return "Published successfully";
+        return new ResponseEntity<Ticket>(ticket, HttpStatus.OK);
+//        return "Published successfully";
     }
 }

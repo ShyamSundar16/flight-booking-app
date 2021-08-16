@@ -1,8 +1,10 @@
 package com.fseflightapp.controllers;
 
 import com.fseflightapp.entities.Schedule;
+import com.fseflightapp.exception.ScheduleNotFoundException;
 import com.fseflightapp.services.ScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,7 +26,7 @@ public class ScheduleController {
 
     @CrossOrigin
     @GetMapping("/{id}")
-    public Schedule getScheduleById(@PathVariable String id) {
+    public ResponseEntity<Schedule> getScheduleById(@PathVariable String id) throws ScheduleNotFoundException {
         return scheduleService.getScheduleById(id);
     }
 

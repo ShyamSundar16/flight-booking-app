@@ -1,11 +1,16 @@
 package com.fseflightapp.services;
 
 import com.fseflightapp.entities.Coupon;
+import com.fseflightapp.entities.Schedule;
+import com.fseflightapp.exception.CouponNotFoundException;
+import com.fseflightapp.exception.ScheduleNotFoundException;
 import com.fseflightapp.repositories.CouponRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.Caching;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,13 +27,14 @@ public class CouponService {
     }
 
     @Cacheable("coupon")
-    public Coupon getCouponById(int id) {
+    public ResponseEntity<Coupon> getCouponById(int id) throws CouponNotFoundException {
         Optional<Coupon> flightOptional = couponRepository.findById(id);
         if (flightOptional.isPresent()) {
-            return flightOptional.get();
+            return new ResponseEntity<Coupon>(flightOptional.get(), HttpStatus.OK);
         } else {
             System.out.println("Coupon not found with id: " + id);
-            return null;
+            throw new CouponNotFoundException("Coupon not found with id: "+id);
+
         }
     }
 
