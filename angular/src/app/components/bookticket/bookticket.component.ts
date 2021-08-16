@@ -10,6 +10,7 @@ import { Ticket } from 'src/app/models/Ticket';
 import { CouponService } from 'src/app/services/coupon.service';
 import { FlightService } from 'src/app/services/flight.service';
 import { ScheduleService } from 'src/app/services/schedule.service';
+import { SearchService } from 'src/app/services/search.service';
 import { TicketService } from 'src/app/services/ticket.service';
 import { UserService } from 'src/app/services/user.service';
 import { SearchFlightComponent } from '../search-flight/search-flight.component';
@@ -50,7 +51,7 @@ export class BookticketComponent implements OnInit {
 
   constructor(public flightService: FlightService, public couponService: CouponService,
     public searchFlightComponent: SearchFlightComponent, public userService: UserService,
-    public tickerService: TicketService, public router: Router, public scheduleService: ScheduleService) {
+    public tickerService: TicketService, public router: Router, public scheduleService: ScheduleService, public searchService:SearchService) {
     this.addPassengerForm = new FormGroup({
       name: new FormControl("", [Validators.required]),
       gender: new FormControl("", [Validators.required]),
@@ -200,7 +201,7 @@ export class BookticketComponent implements OnInit {
     onwardTicket.passesngers = JSON.stringify(this.passesngers);
     onwardTicket.pnr = generatedPNROnward;
     onwardTicket.id = generatedPNROnward;
-    this.tickerService.saveTickets(onwardTicket).subscribe((res) => {
+    this.searchService.publishTicket(onwardTicket).subscribe((res) => {
     });
 
 
@@ -220,7 +221,7 @@ export class BookticketComponent implements OnInit {
       onwardTicket.passesngers = JSON.stringify(this.passesngers);
       onwardTicket.pnr = generatedPNROnward;
       onwardTicket.id = generatedPNROnward;
-      this.tickerService.saveTickets(onwardTicket).subscribe((res) => {
+      this.searchService.publishTicket(onwardTicket).subscribe((res) => {
       });
 
 

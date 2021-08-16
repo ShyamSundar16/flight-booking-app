@@ -4,6 +4,7 @@ import com.fseflightapp.entities.Ticket;
 import com.fseflightapp.repository.TicketRepository;
 import com.fseflightapp.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,6 +18,8 @@ public class TicketController {
 
     @Autowired
     TicketService ticketService;
+
+    private static final String TOPIC = "ticket";
 
     @CrossOrigin
     @GetMapping("")
@@ -49,5 +52,11 @@ public class TicketController {
     public boolean removeTicket(@PathVariable String id) {
         System.out.println("Book to delete: " + id);
         return ticketService.removeTicket(id);
+    }
+
+    @KafkaListener(topics = TOPIC, groupId="group_id", containerFactory = "userKafkaListenerFactory")
+    public void consumeJson(Ticket ticket) {
+        System.out.println("Consumed Message: " + ticket);
+        ticketService.save(ticket);
     }
 }

@@ -2,9 +2,11 @@ package com.fseflightapp.searchflightservice.controller;
 
 import com.fseflightapp.searchflightservice.model.Flight;
 import com.fseflightapp.searchflightservice.model.Schedule;
+import com.fseflightapp.searchflightservice.model.Ticket;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -18,6 +20,9 @@ public class SearchFlightController {
 
     @Autowired
     private RestTemplate restTemplate;
+
+    @Autowired
+    private KafkaTemplate<String, Ticket> kafkaTemplate;
 
     @CrossOrigin
     @GetMapping("/filter")
@@ -52,5 +57,15 @@ public class SearchFlightController {
         });
 
         return filteredFlightList;
+    }
+
+    private static final String TOPIC = "ticket";
+
+    @CrossOrigin
+    @PostMapping("/publish")
+    public String publishTicket( @RequestBody Ticket ticket) {
+        kafkaTemplate.send(TOPIC, ticket);
+
+        return "Published successfully";
     }
 }
