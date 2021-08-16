@@ -30,6 +30,10 @@ export class TickethistoryComponent implements OnInit {
       })
   }
 
+  refreshTickets(){
+    this.showTicketHistory();
+  }
+
   viewTicket(ticket: Ticket) {
     this.ticketService.ticket=ticket;
     this.router.navigate(["downloadTicket"]);

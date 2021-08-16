@@ -31,7 +31,7 @@ export class ScheduleService {
 
     saveSchedule(schedule: Schedule) {
         let keyConstruct:string[]=schedule.scheduledDate.split("/");
-        schedule.id =schedule.code+"_"+keyConstruct[0]+"_"+keyConstruct[1]+"_"+[2]+"_"+schedule.arrivalTime;
+        schedule.id =schedule.code+"_"+keyConstruct[0]+"_"+keyConstruct[1]+"_"+keyConstruct[2]+"_"+schedule.arrivalTime;
         return this.httpClient.post(this.url, schedule);
     }
 
