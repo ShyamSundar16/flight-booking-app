@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = {"http://localhost:4200"})
+@CrossOrigin(origins = "*", allowedHeaders = "*")
+//@CrossOrigin(origins = {"https://fseflightbooking.s3.us-east-2.amazonaws.com"})
 @RestController
 @RequestMapping("/users")
 public class UserController {

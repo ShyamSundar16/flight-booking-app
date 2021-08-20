@@ -40,13 +40,13 @@ export class LoginComponent implements OnInit {
     let authUser: AuthUser = new AuthUser;
     authUser.username = u.email;
     authUser.password = u.password
-
     this.validateUserAndNavigate(authUser);
   }
 
   signUpUser() {
     let userObj: User = this.signupForm.value
     userObj.id = userObj.email;
+    userObj.username = userObj.email;
     userObj.role = "customer";
     this.userService.saveUser(userObj)
       .subscribe((res) => {

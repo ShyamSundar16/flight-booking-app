@@ -5,7 +5,7 @@ import { Ticket } from "../models/Ticket";
 
 @Injectable()
 export class SearchService {
-    private url: string = "http://localhost:8989/api/bookflights/searchFlight";
+    private url: string = "http://ec2-52-14-234-157.us-east-2.compute.amazonaws.com:8989/api/bookflights/searchFlight";
 
     constructor(private httpClient: HttpClient) {
     }
