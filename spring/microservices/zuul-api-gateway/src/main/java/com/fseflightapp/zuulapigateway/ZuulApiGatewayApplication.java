@@ -13,5 +13,6 @@ public class ZuulApiGatewayApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ZuulApiGatewayApplication.class, args);
 	}
-
 }
+
+

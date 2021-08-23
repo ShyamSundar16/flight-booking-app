@@ -6,8 +6,8 @@ import { User } from "../models/User";
 @Injectable({"providedIn": "root"})
 export class UserService{
     private u = new User();
-    private url: string = "http://ec2-52-14-234-157.us-east-2.compute.amazonaws.com:8989/api/usermangement/users";
-    private authenticationurl: string = "http://ec2-52-14-234-157.us-east-2.compute.amazonaws.com:8989/api/usermangement/authenticate/token"
+    private url: string = "http://ec2-3-142-134-192.us-east-2.compute.amazonaws.com:8989/api/usermangement/users";
+    private authenticationurl: string = "http://ec2-3-142-134-192.us-east-2.compute.amazonaws.com:8989/api/usermangement/authenticate/token"
 
     constructor(private httpClient: HttpClient){
 
